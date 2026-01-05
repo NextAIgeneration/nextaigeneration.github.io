@@ -1,1 +1,1 @@
-# -nextaigeneration.github.io
+# nextaigeneration.github.io
