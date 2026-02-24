@@ -75,6 +75,10 @@ mv ~/.claude/projects.backup ~/.claude/projects
 - External SSD 2 TB (USB-C)
 - Claude Code (latest)
 
+## Contact
+
+For questions or support: **vincent@fredfrenchtouch.io**
+
 ---
 
 *[NextAIgeneration](https://github.com/NextAIgeneration) · FFT — Fred French Touch SRL*
