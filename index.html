@@ -3,105 +3,398 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NextAIgeneration - FFT Cognitive Platform</title>
-    <meta name="description" content="Sovereign Edge AI for European Research & Innovation - COSMIC RAG • Janus Orchestration • Digital Twins • Smart Grids">
-    <meta http-equiv="refresh" content="3;url=https://cosmic-rag.vercel.app">
+    <title>Next AI Generation — Sovereign AI Infrastructure</title>
+    <meta name="description" content="Local-first AI infrastructure. DeepSeek, Qwen, Ollama. Zero cloud dependency. European digital sovereignty.">
     <style>
+        :root {
+            --bg-deep: #221E35;
+            --bg-main: #2D2749;
+            --bg-card: #3D3566;
+            --violet: #8B5CF6;
+            --magenta: #E035A2;
+            --cyan: #00D9FF;
+            --gold: #FBBF24;
+            --green: #10B981;
+            --text: #E5E7EB;
+            --text-secondary: #BD94BB;
+            --text-dim: #C7C9FF;
+            --border: #4A4565;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
+            font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+            background: var(--bg-deep);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        .container { max-width: 800px; }
-        .badge {
-            background: linear-gradient(90deg, #00d4ff, #0099ff);
-            color: #000;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            display: inline-block;
+        .grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 1000;
+        }
+        header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.2rem; font-weight: 700; }
+        .logo span { color: var(--violet); }
+        nav a {
+            color: var(--text-dim); text-decoration: none; margin-left: 2rem;
+            font-size: 0.85rem; transition: color 0.2s;
+        }
+        nav a:hover { color: var(--cyan); }
+        .hero {
+            max-width: 900px; margin: 0 auto; padding: 6rem 2rem 4rem;
+            text-align: center;
         }
         h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, #fff, #00d4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.1; margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--violet), var(--magenta));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         .subtitle {
-            font-size: 1.25rem;
-            color: #a0a0a0;
-            margin-bottom: 2rem;
+            font-size: 1.1rem; color: var(--text-secondary);
+            max-width: 600px; margin: 0 auto 3rem;
         }
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 2rem;
+        .badge-row {
+            display: flex; gap: 0.75rem; justify-content: center;
+            flex-wrap: wrap; margin-bottom: 3rem;
         }
-        .feature {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 0.75rem 1.25rem;
-            border-radius: 8px;
+        .badge {
+            padding: 0.4rem 0.8rem; border-radius: 4px;
+            font-size: 0.75rem; font-weight: 600;
+            border: 1px solid var(--border);
+        }
+        .badge-green { color: var(--green); border-color: var(--green); }
+        .badge-cyan { color: var(--cyan); border-color: var(--cyan); }
+        .badge-gold { color: var(--gold); border-color: var(--gold); }
+        .badge-violet { color: var(--violet); border-color: var(--violet); }
+
+        .stack {
+            max-width: 1000px; margin: 0 auto; padding: 0 2rem 4rem;
+        }
+        .stack h2 {
+            font-size: 1.4rem; margin-bottom: 2rem;
+            color: var(--text-dim); text-align: center;
+        }
+        .cards {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            border-radius: 8px; padding: 1.5rem;
+            transition: border-color 0.3s;
+        }
+        .card:hover { border-color: var(--violet); }
+        .card h3 {
+            font-size: 1rem; margin-bottom: 0.5rem;
+            color: var(--cyan);
+        }
+        .card p { font-size: 0.85rem; color: var(--text-secondary); }
+        .card .tech {
+            margin-top: 1rem; font-size: 0.75rem;
+            color: var(--green);
+        }
+
+        .architecture {
+            max-width: 800px; margin: 0 auto; padding: 2rem;
+        }
+        .architecture h2 {
+            font-size: 1.4rem; margin-bottom: 2rem;
+            color: var(--text-dim); text-align: center;
+        }
+        pre {
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            border-radius: 8px; padding: 1.5rem;
+            overflow-x: auto; font-size: 0.8rem;
+            color: var(--text-dim); line-height: 1.8;
+        }
+        pre .comment { color: var(--text-secondary); }
+        pre .highlight { color: var(--cyan); }
+        pre .accent { color: var(--magenta); }
+        pre .gold { color: var(--gold); }
+
+        .manifesto {
+            max-width: 700px; margin: 4rem auto; padding: 2rem;
+            text-align: center;
+        }
+        .manifesto h2 {
+            font-size: 1.4rem; margin-bottom: 2rem;
+            color: var(--gold);
+        }
+        .laws {
+            text-align: left; list-style: none;
+        }
+        .laws li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
             font-size: 0.9rem;
         }
-        .cta {
-            background: linear-gradient(90deg, #00d4ff, #0099ff);
-            color: #000;
-            padding: 1rem 2rem;
+        .laws li:last-child { border-bottom: none; }
+        .laws .num {
+            color: var(--violet); font-weight: 700;
+            margin-right: 0.5rem;
+        }
+        .laws .law-title { color: var(--cyan); font-weight: 600; }
+
+        .copilot {
+            max-width: 800px; margin: 2rem auto 4rem; padding: 2rem;
+            background: var(--bg-main); border: 1px solid var(--border);
             border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: inline-block;
-            margin-top: 1rem;
-            transition: transform 0.2s;
         }
-        .cta:hover { transform: scale(1.05); }
-        .redirect {
-            margin-top: 2rem;
-            color: #666;
-            font-size: 0.9rem;
+        .copilot-header {
+            display: flex; align-items: center; gap: 1rem;
+            margin-bottom: 1rem;
         }
-        .footer {
-            position: absolute;
-            bottom: 2rem;
-            color: #444;
-            font-size: 0.8rem;
+        .copilot-avatar {
+            width: 48px; height: 48px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--violet), var(--green));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; font-weight: 700;
+        }
+        .copilot-name { font-size: 1.1rem; color: var(--green); }
+        .copilot-role { font-size: 0.8rem; color: var(--text-secondary); }
+        .copilot p {
+            font-size: 0.85rem; color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        .copilot .stat {
+            display: inline-block; padding: 0.3rem 0.6rem;
+            background: var(--bg-card); border-radius: 4px;
+            font-size: 0.75rem; margin: 0.25rem 0.25rem 0.25rem 0;
+            color: var(--text-dim);
+        }
+
+        .metrics {
+            max-width: 800px; margin: 0 auto 4rem; padding: 0 2rem;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+        }
+        .metric {
+            text-align: center; padding: 1.5rem;
+            background: var(--bg-main); border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+        .metric .value {
+            font-size: 2rem; font-weight: 700;
+            color: var(--cyan);
+        }
+        .metric .label {
+            font-size: 0.7rem; color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        footer {
+            text-align: center; padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary); font-size: 0.75rem;
+        }
+        footer a { color: var(--violet); text-decoration: none; }
+
+        @media (max-width: 640px) {
+            .metrics { grid-template-columns: repeat(2, 1fr); }
+            header { flex-direction: column; gap: 1rem; }
+            nav a { margin-left: 1rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <span class="badge">Horizon Europe Ready • GREENET 2026</span>
-        <h1>FFT Cognitive Platform</h1>
-        <p class="subtitle">Sovereign Edge AI for European Research & Innovation</p>
-        <div class="features">
-            <span class="feature">COSMIC RAG</span>
-            <span class="feature">Janus Orchestration</span>
-            <span class="feature">Digital Twins</span>
-            <span class="feature">Smart Grids</span>
-            <span class="feature">100% Local</span>
-            <span class="feature">€0 Cost</span>
+<div class="grain"></div>
+
+<header>
+    <div class="logo">next<span>AI</span>generation</div>
+    <nav>
+        <a href="#stack">Stack</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#laws">Five Laws</a>
+        <a href="#copilot">Copilot</a>
+        <a href="https://gitlab.com/fred-french-touch-srl-group">GitLab</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Your AI. Your Hardware. Your Rules.</h1>
+    <p class="subtitle">
+        Local-first sovereign AI infrastructure. 21 models running on a Mac Studio.
+        Zero cloud dependency. Zero vendor lock-in. European digital independence.
+    </p>
+    <div class="badge-row">
+        <span class="badge badge-green">DeepSeek-R1 8B</span>
+        <span class="badge badge-cyan">Qwen 2.5 3B</span>
+        <span class="badge badge-gold">Llama 3.2 3B</span>
+        <span class="badge badge-violet">nomic-embed 768d</span>
+        <span class="badge badge-green">Ollama Local</span>
+        <span class="badge badge-cyan">CoreML ANE 16c</span>
+    </div>
+</section>
+
+<div class="metrics">
+    <div class="metric">
+        <div class="value">21</div>
+        <div class="label">LOCAL MODELS</div>
+    </div>
+    <div class="metric">
+        <div class="value">1M+</div>
+        <div class="label">VECTORS</div>
+    </div>
+    <div class="metric">
+        <div class="value">0</div>
+        <div class="label">CLOUD DEPS</div>
+    </div>
+    <div class="metric">
+        <div class="value">&lt;0.5s</div>
+        <div class="label">LATENCY</div>
+    </div>
+</div>
+
+<section class="stack" id="stack">
+    <h2>// SOVEREIGN STACK</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>Reasoning</h3>
+            <p>Deep analysis with DeepSeek-R1. Chain-of-thought reasoning on geopolitics, economics, sovereignty. Local, uncensored, unfiltered.</p>
+            <div class="tech">deepseek-r1:8b | Ollama :11435 | RISC-V compatible</div>
         </div>
-        <a href="https://cosmic-rag.vercel.app" class="cta">Enter Platform →</a>
-        <p class="redirect">Redirecting in 3 seconds...</p>
+        <div class="card">
+            <h3>Extraction</h3>
+            <p>Structured data extraction with Qwen 2.5. JSON output, entity detection, pattern recognition. Alibaba open-source, running local.</p>
+            <div class="tech">qwen2.5:3b | multilingual | zero-cost inference</div>
+        </div>
+        <div class="card">
+            <h3>Summarization</h3>
+            <p>AI-powered content summarization with Llama 3.2. Professional briefs in 2-3 sentences. ~5s per item on M1 Max.</p>
+            <div class="tech">llama3.2:3b | Meta open-weight | batch processing</div>
+        </div>
+        <div class="card">
+            <h3>Embeddings</h3>
+            <p>768-dimensional vector space with nomic-embed-text. Semantic search, analogies, arithmetic. E(A)+E(B)-E(C) = discovery.</p>
+            <div class="tech">nomic-embed-text | 52 vec/s ANE | ChromaDB 1M+</div>
+        </div>
+        <div class="card">
+            <h3>Vision</h3>
+            <p>CoreML on Apple Neural Engine. 16 cores dedicated. YOLO real-time detection. LiDAR 3D scanning via iPad Pro.</p>
+            <div class="tech">CoreML 8.1 | ANE 16c | onnxruntime | zero-copy</div>
+        </div>
+        <div class="card">
+            <h3>Edge Computing</h3>
+            <p>ESP32-C6 RISC-V + ESP32-S3 Xtensa. Neuro-firmware with STDP plasticity, theta rhythm, predictive coding. Ternary logic (-1, 0, +1).</p>
+            <div class="tech">bare metal C | 8 bio modules | ESP-NOW mesh</div>
+        </div>
     </div>
-    <div class="footer">
-        FFT Cognitive • EU Sovereign • Privacy-First • fred french touch srl
+</section>
+
+<section class="architecture" id="architecture">
+    <h2>// PIPELINE</h2>
+    <pre>
+<span class="comment"># fft-io-funnel: automated content intelligence</span>
+<span class="comment"># 10 GitLab CI/CD pipelines. All green. All local.</span>
+
+<span class="highlight">CAPTURE</span>    RSS 15+ feeds (HN, Reddit/ML, Elucid, LQDN)
+    |
+    v
+<span class="highlight">FILTER</span>     4-level: source > content > AI > dedupe
+    |
+    v
+<span class="highlight">TRANSFORM</span>  <span class="accent">DeepSeek-R1</span> reasoning + <span class="gold">Qwen 2.5</span> extraction
+    |         Llama 3.2 summaries | JANUS deep analysis
+    v
+<span class="highlight">STORE</span>      Notion databases + MinIO S3 + ChromaDB vectors
+    |         Training JSONL export for fine-tuning
+    v
+<span class="highlight">PUBLISH</span>    <span class="accent">nextaigeneration.org</span> (this site)
+    |
+    v
+<span class="highlight">MONITOR</span>   Prometheus + Grafana + weekly metrics
+
+<span class="comment"># Infrastructure: Mac Studio M1 Max (64GB)</span>
+<span class="comment"># Runner: "FFT Mac Studio M1 Max - Enzo Xic 2026"</span>
+<span class="comment"># Secrets: 1Password CLI (stdin only, never CLI args)</span>
+<span class="comment"># Network: Tailscale mesh + Traefik bastion</span>
+<span class="comment"># Storage: MinIO S3 local + GitLab artifacts</span>
+<span class="comment"># Cost: EUR 125/month total (vs $200K+/year cloud)</span>
+    </pre>
+</section>
+
+<section class="manifesto" id="laws">
+    <h2>FIVE LAWS</h2>
+    <ul class="laws">
+        <li>
+            <span class="num">I.</span>
+            <span class="law-title">Cognitive Sovereignty</span> —
+            Your data, your compute, your control. No third party sees your prompts.
+        </li>
+        <li>
+            <span class="num">II.</span>
+            <span class="law-title">Local-First</span> —
+            Zero mandatory cloud dependencies. Everything runs on your hardware.
+        </li>
+        <li>
+            <span class="num">III.</span>
+            <span class="law-title">AI as Amplifier</span> —
+            Not replacement. Human-in-the-loop by design.
+        </li>
+        <li>
+            <span class="num">IV.</span>
+            <span class="law-title">Independence</span> —
+            No vendor lock-in. DeepSeek today, Mistral tomorrow. You choose.
+        </li>
+        <li>
+            <span class="num">V.</span>
+            <span class="law-title">Performance</span> —
+            Sub-0.5s latency. 52 vectors/second on ANE. Real-time or nothing.
+        </li>
+    </ul>
+</section>
+
+<section class="copilot" id="copilot">
+    <div class="copilot-header">
+        <div class="copilot-avatar">Ex</div>
+        <div>
+            <div class="copilot-name">Enzo Xic</div>
+            <div class="copilot-role">AI Copilot — FFT Cognitive Platform</div>
+        </div>
     </div>
+    <p>
+        Built on Claude architecture. Named December 14, 2025.
+        Running 24/7 on local infrastructure. Research, code, analysis, security.
+        Not a chatbot — a partner.
+    </p>
+    <p>
+        Manages 21 local models via Ollama. Orchestrates multi-agent pipelines.
+        Writes neuro-firmware in C for ESP32 RISC-V. Builds vector arithmetic engines.
+        Maintains 1M+ vectors in ChromaDB. Deploys via GitLab CI/CD.
+    </p>
+    <div>
+        <span class="stat">Claude Opus 4</span>
+        <span class="stat">DeepSeek-R1</span>
+        <span class="stat">Qwen 2.5</span>
+        <span class="stat">nomic-embed</span>
+        <span class="stat">CoreML ANE</span>
+        <span class="stat">ESP32 firmware</span>
+        <span class="stat">GitLab CI/CD</span>
+        <span class="stat">Tailscale mesh</span>
+        <span class="stat">1Password</span>
+        <span class="stat">InfraNodus</span>
+    </div>
+</section>
+
+<footer>
+    <p>Next AI Generation — Fred French Touch SRL &copy; 2025-2026</p>
+    <p style="margin-top: 0.5rem;">
+        <a href="https://gitlab.com/fred-french-touch-srl-group">GitLab</a> ·
+        European Digital Sovereignty · Local-First · Open Models
+    </p>
+    <p style="margin-top: 1rem; color: var(--border);">
+        Built with DeepSeek (China) + Qwen (Alibaba) + Llama (Meta) + Claude (Anthropic)<br>
+        Running on Apple Silicon · Deployed from Mac Studio M1 Max · Tournai, Belgium
+    </p>
+</footer>
+
 </body>
 </html>
