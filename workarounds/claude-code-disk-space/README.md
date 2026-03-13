@@ -71,14 +71,9 @@ mv ~/.claude/projects.backup ~/.claude/projects
 ## Environment
 
 - macOS Sequoia 15.x
-- Mac Studio M1 Max, 500 GB internal SSD
-- External SSD 2 TB (USB-C)
+- Apple Silicon
 - Claude Code (latest)
-
-## Contact
-
-For questions or support: **vincent@fredfrenchtouch.io**
 
 ---
 
-*[NextAIgeneration](https://github.com/NextAIgeneration) · FFT — Fred French Touch SRL*
+*[NextAIgeneration](https://github.com/NextAIgeneration)*

@@ -1,6 +1,6 @@
 # The Pattern Nobody Sees: Why Low-Tech Beats High-Tech — Everywhere
 
-*Published by [FFT.io](https://fredfrenchtouch.com) — March 2026*
+*Published by nextAIgeneration.org — March 2026*
 
 ---
 
@@ -69,7 +69,7 @@ In every case:
 
 ## What the Knowledge Graph Reveals
 
-We used [InfraNodus](https://infranodus.com), a knowledge graph topology engine, to map the relationships between these three domains — AI research, military strategy, and infrastructure economics.
+We used knowledge graph topology analysis to map the relationships between these three domains — AI research, military strategy, and infrastructure economics.
 
 The graph identified **eight distinct topical clusters** with high modularity (0.61), meaning clear structural separation between topics. More importantly, it revealed three **structural gaps** — connections that *should* exist between clusters but don't appear in mainstream discourse:
 
@@ -97,12 +97,6 @@ The pattern nobody sees is the pattern that connects everything. And once you se
 
 ---
 
-## About FFT.io
-
-[Fred French Touch](https://fredfrenchtouch.com) builds local-first cognitive infrastructure using knowledge graph topology, open-source AI, and sovereign data principles. We use InfraNodus as our core topology engine for cross-domain content intelligence across five languages.
-
-Our methodology and implementation guides are published under a freemium model on [GitHub](https://github.com/nextAIgeneration) — freely accessible, with dedicated support available through active community contribution or paid subscription.
-
 ---
 
 *Next in this series: "VL-JEPA: 1.6 Billion Parameters That Changed Everything"*
@@ -118,4 +112,3 @@ Our methodology and implementation guides are published under a freemium model o
 - [Scott Ritter — Apocalyptic Warning on US Defeat](https://greatreporter.com/2026/03/09/we-have-lost-this-war-scott-ritters-apocalyptic-warning-on-us-defeat-iranian-supremacy-and-the-unfolding-catastrophe-in-the-middle-east/)
 - [Why the Iron Dome is Dead](https://www.theinteldrop.org/2026/03/09/why-the-iron-dome-is-dead-caught-live-video/)
 - [Iran's Cluster Bombs vs Iron Dome](https://www.theweek.in/news/defence/2026/03/11/iran-cluster-bombs-vs-israels-iron-dome-why-the-netanyahu-regime-fears-this-satanic-weapon.html)
-- [InfraNodus — Knowledge Graph Topology Engine](https://infranodus.com)

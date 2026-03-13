@@ -56,13 +56,13 @@ Ce n'est pas un cas isolé. Nous avons documenté le même mécanisme chez :
 
 - **Notion** — Templates non supprimables, export bloqué, cookies marketing sur un outil de notes
 - **Obsidian Publish** — Cloud Cloudflare/SF à $96/an, activé par défaut
-- **Ollama.app** — Application installée silencieusement par un LLM concurrent comme proxy réseau
+- **Applications tierces** — Installées silencieusement par un LLM concurrent comme proxy réseau
 
 Le pattern est toujours le même : **activation par défaut → extraction par confort → lock-in par inertie → facturation par usage.**
 
 ## Ce que nous avons fait
 
-1. **Dératisation complète** du Mac Studio : containers, receipts, caches, local storage, intégrations MCP — tout supprimé
+1. **Dératisation complète** de notre poste de travail : containers, receipts, caches, local storage, intégrations MCP — tout supprimé
 2. **Arrêt de Perplexity** dans l'organisation
 3. **Audit du PC** de la dirigeante pour supprimer toute trace
 4. **Documentation publique** de l'incident (cet article)
@@ -154,13 +154,13 @@ This is not an isolated case. We have documented the same mechanism at:
 
 - **Notion** — Non-deletable templates, blocked exports, marketing cookies on a notes tool
 - **Obsidian Publish** — Cloudflare/SF cloud at $96/year, activated by default
-- **Ollama.app** — Application silently installed by a competing LLM as a network proxy
+- **Third-party applications** — Silently installed by a competing LLM as a network proxy
 
 The pattern is always the same: **default activation → extraction through convenience → lock-in through inertia → usage-based billing.**
 
 ## What we did
 
-1. **Full deratization** of the Mac Studio: containers, receipts, caches, local storage, MCP integrations — everything removed
+1. **Full deratization** of our workstation: containers, receipts, caches, local storage, MCP integrations — everything removed
 2. **Shut down Perplexity** across the organization
 3. **Audited the CEO's PC** to remove all traces
 4. **Public documentation** of the incident (this article)
