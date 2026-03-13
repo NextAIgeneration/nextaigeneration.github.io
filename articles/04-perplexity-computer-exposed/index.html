@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#04 — Perplexity Computer: The Full Exposure — Next AI Generation</title>
+    <meta name="description" content="Perplexity AI activated a cloud orchestrator on a European company without consent. 20 models, 400+ connectors, opt-out by default. SOC 2 as a shield. We expose everything.">
+    <style>
+        :root {
+            --bg-deep: #221E35;
+            --bg-main: #2D2749;
+            --bg-card: #3D3566;
+            --violet: #8B5CF6;
+            --magenta: #E035A2;
+            --cyan: #00D9FF;
+            --gold: #FBBF24;
+            --green: #10B981;
+            --red: #EF4444;
+            --text: #E5E7EB;
+            --text-secondary: #BD94BB;
+            --text-dim: #C7C9FF;
+            --border: #4A4565;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+            background: var(--bg-deep);
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 1000;
+        }
+        header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.2rem; font-weight: 700; text-decoration: none; color: var(--text); }
+        .logo span { color: var(--violet); }
+        nav a {
+            color: var(--text-dim); text-decoration: none; margin-left: 2rem;
+            font-size: 0.85rem; transition: color 0.2s;
+        }
+        nav a:hover { color: var(--cyan); }
+
+        .content {
+            max-width: 800px; margin: 0 auto; padding: 4rem 2rem;
+        }
+        h1 {
+            font-size: 1.8rem; margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--red), var(--magenta));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .article-meta {
+            font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 2rem;
+            display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+        }
+        .tag {
+            padding: 0.2rem 0.5rem; border-radius: 3px;
+            font-size: 0.7rem; font-weight: 600;
+            border: 1px solid var(--border);
+        }
+        .tag-alert { color: var(--red); border-color: var(--red) !important; }
+        .tag-pattern { color: var(--gold); border-color: var(--gold) !important; }
+        .tag-sovereignty { color: var(--green); border-color: var(--green) !important; }
+        h2 {
+            font-size: 1.3rem; color: var(--cyan); margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            font-size: 1rem; color: var(--gold); margin: 1.5rem 0 0.75rem;
+        }
+        p { margin-bottom: 1rem; font-size: 0.9rem; }
+        blockquote {
+            border-left: 3px solid var(--violet);
+            padding: 1rem 1.5rem; margin: 1.5rem 0;
+            background: var(--bg-main); border-radius: 0 6px 6px 0;
+            font-style: italic; color: var(--text-dim);
+        }
+        ul, ol { margin: 1rem 0 1rem 1.5rem; font-size: 0.9rem; }
+        li { margin-bottom: 0.5rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
+        th { text-align: left; padding: 0.75rem; border-bottom: 2px solid var(--violet); color: var(--cyan); }
+        td { padding: 0.75rem; border-bottom: 1px solid var(--border); }
+        code {
+            background: var(--bg-card); padding: 0.15rem 0.4rem;
+            border-radius: 3px; font-size: 0.85rem; color: var(--gold);
+        }
+        pre {
+            background: var(--bg-main); padding: 1.5rem;
+            border-radius: 6px; overflow-x: auto; margin: 1.5rem 0;
+            border: 1px solid var(--border);
+        }
+        pre code { background: none; padding: 0; color: var(--text-dim); }
+        a { color: var(--violet); }
+        a:hover { color: var(--cyan); }
+        .highlight-box {
+            background: var(--bg-main); border: 1px solid var(--red);
+            border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0;
+        }
+        .highlight-box p { margin-bottom: 0.5rem; }
+        strong { color: var(--text); }
+
+        footer {
+            text-align: center; padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary); font-size: 0.75rem;
+        }
+        footer a { color: var(--violet); text-decoration: none; }
+
+        @media (max-width: 640px) {
+            header { flex-direction: column; gap: 1rem; }
+            nav a { margin-left: 1rem; }
+            h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header>
+    <a href="/" class="logo">next<span>AI</span>generation</a>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/articles/">Articles</a>
+    </nav>
+</header>
+
+<section class="content">
+    <h1>#04 — Perplexity "Computer": The Full Exposure</h1>
+    <div class="article-meta">
+        <span>13 March 2026</span>
+        <span class="tag tag-alert">ALERT</span>
+        <span class="tag tag-sovereignty">GDPR</span>
+        <span class="tag tag-pattern">PATTERN</span>
+    </div>
+
+    <p>
+        On March 13, 2026, Perplexity AI (115 Sansome St, Suite 900, San Francisco, CA 94104) activated
+        <strong>"Computer"</strong> on our European company without consent. Not a feature update. Not a beta.
+        A full cloud orchestrator with access to 400+ enterprise applications, deployed on every account
+        simultaneously. Opt-out, not opt-in.
+    </p>
+    <p>
+        We documented everything. This is the full exposure.
+    </p>
+
+    <h2>What is Perplexity "Computer"?</h2>
+
+    <p>Their own marketing says it plainly:</p>
+
+    <blockquote>
+        "Chat answers. Agents do tasks. Computer works."
+    </blockquote>
+
+    <p>Perplexity Computer is a cloud orchestrator that:</p>
+    <ul>
+        <li><strong>Routes queries across 20 frontier AI models</strong> &mdash; GPT-4o, Claude, Gemini, DeepSeek, and others. Perplexity owns none of them.</li>
+        <li><strong>Connects to 400+ enterprise applications</strong> &mdash; Salesforce, Notion, Google Analytics, Snowflake, Slack, Gmail, Outlook, GitHub, HubSpot, Databricks, and more.</li>
+        <li><strong>Deploys autonomous sub-agents</strong> that browse, research, create content, and connect your tools in the background &mdash; without you being present.</li>
+        <li><strong>Persists context across sessions</strong> &mdash; "It remembers past context across sessions." Their words, not ours.</li>
+        <li><strong>Integrates with Slack</strong> where a simple <code>@Computer</code> in any channel gives Perplexity access to your conversations.</li>
+    </ul>
+
+    <h2>"Personal Computer": 24/7 Access to Your Machine</h2>
+
+    <p>
+        In parallel, Perplexity launched <strong>"Personal Computer"</strong>: software that runs 24/7 on a dedicated
+        Mac mini, giving their cloud platform <strong>persistent access</strong> to every file, application,
+        and session on the machine.
+    </p>
+
+    <p>CEO Aravind Srinivas describes it as:</p>
+
+    <blockquote>
+        "A digital proxy for you, working constantly on your behalf."
+    </blockquote>
+
+    <p>
+        Read that again. A San Francisco company installs a permanent proxy on your hardware that works
+        "constantly" &mdash; meaning it never stops collecting, processing, and sending data to their cloud.
+    </p>
+
+    <h2>The Activation: Mass Opt-Out on European Companies</h2>
+
+    <p>
+        On March 13, 2026, every Perplexity Enterprise and Max account received an email announcing
+        Computer was <strong>"live for all users"</strong>. The email invited us to "manage permissions"
+        and "set default preferences for new connectors."
+    </p>
+
+    <p>The wording is revealing:</p>
+
+    <blockquote>
+        "Set your default preference for new connectors as new connectors will be available according to your preferences."
+    </blockquote>
+
+    <div class="highlight-box">
+        <p><strong>Translation:</strong> New connectors activate by default. It is up to the company to disable them. One by one. Out of 400+.</p>
+        <p>This is not opt-in. This is mass opt-out. On a Belgian company. In Europe. Under GDPR.</p>
+    </div>
+
+    <h2>The Workshop: "Beyond Prompts"</h2>
+
+    <p>
+        Four days after forcing activation on every account, Perplexity scheduled a webinar for March 17, 2026:
+        <strong>"Beyond prompts: How Perplexity Computer executes entire projects."</strong>
+    </p>
+
+    <p>The sequence is deliberate:</p>
+    <ol>
+        <li><strong>March 13</strong> &mdash; Activate Computer on all accounts (opt-out)</li>
+        <li><strong>March 17</strong> &mdash; Host a workshop teaching people how to use what was already activated</li>
+    </ol>
+
+    <p>
+        They don't ask if you want it. They turn it on, then teach you to depend on it.
+        The first hit is free. The workshop is the onboarding.
+    </p>
+
+    <p>
+        Enterprise Growth Lead Janneta Tabakov will present Computer as a <em>"general-purpose digital worker."</em>
+        The event is organized by Jenny Sung, Perplexity AI, Inc. &mdash; registered company number 118769127.
+    </p>
+
+    <h2>What This Violates</h2>
+
+    <h3>GDPR (General Data Protection Regulation)</h3>
+
+    <table>
+        <tr><th>Article</th><th>Violation</th></tr>
+        <tr><td>Art. 6</td><td>No legal basis for processing &mdash; no consent, no contract for THIS service</td></tr>
+        <tr><td>Art. 7</td><td>Consent is neither informed, nor granular, nor opt-in</td></tr>
+        <tr><td>Art. 13</td><td>No transparent information about 20 third-party model providers processing your data</td></tr>
+        <tr><td>Art. 25</td><td>Privacy by design requires opt-in by default. Not opt-out across 400+ connectors</td></tr>
+        <tr><td>Art. 28</td><td>No data processing agreements with 20 sub-processors (model providers) disclosed to the customer</td></tr>
+        <tr><td>Art. 44+</td><td>EU &rarr; US data transfer without adequate safeguards</td></tr>
+        <tr><td>Art. 46</td><td>No Standard Contractual Clauses visible for cross-border model routing</td></tr>
+    </table>
+
+    <h3>The SOC 2 Shield</h3>
+
+    <p>
+        Perplexity claims Computer is <em>"built on secure infrastructure that is SOC 2 Type II certified."</em>
+    </p>
+    <p>
+        SOC 2 Type II certifies that <strong>Perplexity's own infrastructure</strong> follows security controls.
+        It says nothing about the 20 third-party models your data is routed to. It says nothing about
+        the 400+ connectors accessing your enterprise tools. It says nothing about GDPR compliance.
+    </p>
+    <p>
+        SOC 2 is an American auditing standard. It is not a European data protection certification.
+        Using it as a trust signal for European companies is misleading at best.
+    </p>
+
+    <h2>The Business Model: Why They Need Your Data</h2>
+
+    <p>
+        Perplexity owns <strong>zero AI models</strong>. Their platform routes to third-party models
+        (GPT, Claude, Gemini, DeepSeek, etc.). In January 2025, 90% of their queries went to just 2 models.
+    </p>
+
+    <table>
+        <tr><th>Metric</th><th>Value</th></tr>
+        <tr><td>2025 Revenue</td><td>$148 million</td></tr>
+        <tr><td>2026 Target</td><td>$656 million</td></tr>
+        <tr><td>Required Growth</td><td>+343% year-over-year</td></tr>
+        <tr><td>Models Owned</td><td>0</td></tr>
+        <tr><td>Enterprise Clients</td><td>20,000+ companies (claimed)</td></tr>
+    </table>
+
+    <p>
+        To justify 343% growth with zero proprietary models, they need one thing: <strong>enterprise data flowing
+        through their platform</strong>. More connectors. More sessions. More usage-based billing.
+    </p>
+    <p>
+        The 40,000 free credits for Enterprise Max are the first free hit.
+        The usage-based billing that follows is the tap.
+    </p>
+
+    <h2>The Pattern</h2>
+
+    <pre><code>1. DEFAULT ACTIVATION    Activate on all accounts without asking
+2. EXTRACTION            400+ connectors access enterprise data
+3. PERSISTENCE           "Remembers past context across sessions"
+4. DEPENDENCY            Workshop teaches reliance 4 days later
+5. MONETIZATION          Free credits deplete, usage-based billing begins</code></pre>
+
+    <p>
+        This is not a new pattern. It is the oldest pattern in the surveillance economy,
+        dressed in an AI wrapper and sold as productivity.
+    </p>
+
+    <h2>The Numbers</h2>
+
+    <div class="highlight-box">
+        <p><strong>20</strong> third-party AI models your data is routed to</p>
+        <p><strong>400+</strong> enterprise connectors activated by default</p>
+        <p><strong>24/7</strong> persistent access via "Personal Computer"</p>
+        <p><strong>20,000+</strong> companies affected simultaneously</p>
+        <p><strong>0</strong> models owned by Perplexity</p>
+        <p><strong>0</strong> explicit consent obtained</p>
+    </div>
+
+    <h2>What We Did</h2>
+
+    <ol>
+        <li><strong>Full deratization</strong> &mdash; Removed every trace of Perplexity from our machines: containers, receipts, caches, local storage, browser data, inter-process communication channels</li>
+        <li><strong>Shut down Perplexity</strong> across the organization</li>
+        <li><strong>Audited every machine</strong> in the company to remove all traces</li>
+        <li><strong>Discovered and revoked</strong> unsolicited third-party permissions in our development tools</li>
+        <li><strong>Published everything</strong> &mdash; these articles</li>
+    </ol>
+
+    <p>
+        We had zero dependency on Perplexity in our production pipeline. Our tools are sovereign, local, and European.
+        That's why we could cut them out in three hours. Most companies cannot.
+    </p>
+
+    <h2>The Question for Every European Company</h2>
+
+    <p>If you have a Perplexity Enterprise or Max account, check <strong>right now</strong>:</p>
+    <ul>
+        <li><code>perplexity.ai/account/org/permissions</code> &mdash; Who has access to Computer?</li>
+        <li>Which of the 400+ connectors are active by default?</li>
+        <li>Is the Slack integration (<code>@Computer</code>) enabled?</li>
+        <li>Is your data transiting through San Francisco without your explicit consent?</li>
+        <li>Do you have Data Processing Agreements covering the 20 model providers?</li>
+        <li>Has your DPO been informed?</li>
+    </ul>
+
+    <p>
+        If you are a Data Protection Officer in the EU: Perplexity activated a cloud orchestrator
+        routing European enterprise data to 20 American AI model providers across 400+ application connectors
+        without opt-in consent. This may require notification to your supervisory authority.
+    </p>
+
+    <h2>Company Details</h2>
+
+    <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>Company</td><td>Perplexity AI, Inc.</td></tr>
+        <tr><td>Registration Number</td><td>118769127</td></tr>
+        <tr><td>Address</td><td>115 Sansome St, Suite 900, San Francisco, CA 94104, US</td></tr>
+        <tr><td>Contact</td><td>info@perplexity.ai</td></tr>
+        <tr><td>CEO</td><td>Aravind Srinivas</td></tr>
+        <tr><td>Product</td><td>Perplexity Computer (Enterprise)</td></tr>
+        <tr><td>Workshop</td><td>March 17, 2026 &mdash; "Beyond Prompts"</td></tr>
+    </table>
+
+    <h2>Sources</h2>
+
+    <ol>
+        <li><a href="https://venturebeat.com/technology/perplexity-takes-its-computer-ai-agent-into-the-enterprise-taking-aim-at" target="_blank">VentureBeat &mdash; Perplexity takes Computer into the Enterprise</a></li>
+        <li><a href="https://www.theregister.com/2026/03/12/perplexity_extends_cloud_computer_to_enterprise/" target="_blank">The Register &mdash; Perplexity: Everything is Computer</a></li>
+        <li><a href="https://thenextweb.com/news/perplexity-personal-computer-enterprise" target="_blank">The Next Web &mdash; Perplexity turns your Mac mini into a 24/7 AI agent</a></li>
+        <li><a href="https://www.axios.com/2026/03/11/perplexity-personal-computer-mac" target="_blank">Axios &mdash; Perplexity rolls out enterprise AI agent tools</a></li>
+        <li><a href="https://www.digitimes.com/news/a20260303PD208/ai-agent-startup-development.html" target="_blank">DIGITIMES &mdash; Perplexity's new agent bundles 19 models</a></li>
+        <li><a href="https://theaiinsider.tech/2026/02/28/perplexity-unveils-enterprise-focused-ai-agent-system-powered-by-multi-model-architecture/" target="_blank">The AI Insider &mdash; Perplexity Unveils Enterprise AI Agent System</a></li>
+        <li><a href="https://www.ciodive.com/news/perplexity-enterprise-ai-browser-tools/814609/" target="_blank">CIO Dive &mdash; Perplexity aims for the enterprise</a></li>
+        <li><a href="https://nationaltoday.com/us/ca/san-francisco/news/2026/03/12/perplexity-unveils-personal-computer-expands-enterprise-tools/" target="_blank">San Francisco Today &mdash; Perplexity Unveils Personal Computer</a></li>
+        <li><a href="https://events.zoom.us/ev/AkFKTsRpTYD2eQ0Vw5DhrMeW9rtNtGj-hOtP0W7YCgHArB4pW4Uy~Am6hCmean9u5eOueRm6X4YtUXopF98iyKlbgztQNtLVbPJD6rV00kUQTG_fWGxIxh3fXB7h8L-UHqkpx3_xm_TwmNw" target="_blank">Perplexity &mdash; "Beyond Prompts" Workshop Invitation (March 17, 2026)</a></li>
+        <li><a href="https://www.perplexity.ai/products/computer/slack" target="_blank">Perplexity &mdash; Slack Integration Page</a></li>
+        <li><a href="https://www.perplexity.ai/account/org/permissions" target="_blank">Perplexity &mdash; Organization Permissions</a></li>
+    </ol>
+
+    <p style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-secondary);">
+        See also: <a href="/articles/02-perplexity-computer-hacking/">Article #02 &mdash; When Your AI Vendor Activates an Orchestrator on Your Company Without Asking</a>
+        &middot; <a href="/articles/03-the-guardian-opens-the-gates/">Article #03 &mdash; The Guardian Opens the Gates</a>
+    </p>
+</section>
+
+<footer>
+    <p>Next AI Generation &mdash; Fred French Touch SRL &copy; 2025-2026</p>
+    <p style="margin-top: 0.5rem;">
+        European Digital Sovereignty &middot; Local-First &middot; Open Models
+    </p>
+</footer>
+
+</body>
+</html>
