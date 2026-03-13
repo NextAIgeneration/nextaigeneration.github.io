@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Next AI Generation — Sovereign AI Infrastructure</title>
-    <meta name="description" content="Local-first AI infrastructure. European digital sovereignty. Zero cloud dependency.">
+    <title>Articles — Next AI Generation</title>
+    <meta name="description" content="Articles exposing patterns in the AI industry. Sovereign AI, European data, zero San Francisco.">
     <style>
         :root {
             --bg-deep: #221E35;
@@ -27,7 +27,6 @@
             background: var(--bg-deep);
             color: var(--text);
             line-height: 1.6;
-            overflow-x: hidden;
         }
         .grain {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -46,65 +45,21 @@
             font-size: 0.85rem; transition: color 0.2s;
         }
         nav a:hover { color: var(--cyan); }
-        .hero {
-            max-width: 900px; margin: 0 auto; padding: 6rem 2rem 4rem;
-            text-align: center;
+        nav a.active { color: var(--cyan); border-bottom: 2px solid var(--cyan); padding-bottom: 2px; }
+
+        .content {
+            max-width: 800px; margin: 0 auto; padding: 4rem 2rem;
         }
         h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            line-height: 1.1; margin-bottom: 1.5rem;
+            font-size: 2rem; margin-bottom: 0.5rem;
             background: linear-gradient(135deg, var(--violet), var(--magenta));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .subtitle {
-            font-size: 1.1rem; color: var(--text-secondary);
-            max-width: 600px; margin: 0 auto 3rem;
+        .page-subtitle {
+            color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 3rem;
         }
-        .badge-row {
-            display: flex; gap: 0.75rem; justify-content: center;
-            flex-wrap: wrap; margin-bottom: 3rem;
-        }
-        .badge {
-            padding: 0.4rem 0.8rem; border-radius: 4px;
-            font-size: 0.75rem; font-weight: 600;
-            border: 1px solid var(--border);
-        }
-        .badge-green { color: var(--green); border-color: var(--green); }
-        .badge-cyan { color: var(--cyan); border-color: var(--cyan); }
-        .badge-gold { color: var(--gold); border-color: var(--gold); }
-        .badge-violet { color: var(--violet); border-color: var(--violet); }
 
-        .manifesto {
-            max-width: 700px; margin: 4rem auto; padding: 2rem;
-            text-align: center;
-        }
-        .manifesto h2 {
-            font-size: 1.4rem; margin-bottom: 2rem;
-            color: var(--gold);
-        }
-        .laws {
-            text-align: left; list-style: none;
-        }
-        .laws li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.9rem;
-        }
-        .laws li:last-child { border-bottom: none; }
-        .laws .num {
-            color: var(--violet); font-weight: 700;
-            margin-right: 0.5rem;
-        }
-        .laws .law-title { color: var(--cyan); font-weight: 600; }
-
-        .articles-preview {
-            max-width: 800px; margin: 0 auto 4rem; padding: 0 2rem;
-        }
-        .articles-preview h2 {
-            font-size: 1.4rem; margin-bottom: 2rem;
-            color: var(--text-dim); text-align: center;
-        }
         .article-card {
             background: var(--bg-main);
             border: 1px solid var(--border);
@@ -114,14 +69,14 @@
             text-decoration: none; display: block; color: inherit;
         }
         .article-card:hover { border-color: var(--violet); }
-        .article-card h3 {
-            font-size: 1.1rem; color: var(--cyan); margin-bottom: 0.5rem;
+        .article-card h2 {
+            font-size: 1.2rem; color: var(--cyan); margin-bottom: 0.5rem;
         }
         .article-meta {
             font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 1rem;
             display: flex; gap: 1rem; flex-wrap: wrap;
         }
-        .tag {
+        .article-meta .tag {
             padding: 0.2rem 0.5rem; border-radius: 3px;
             border: 1px solid var(--border); font-size: 0.7rem;
         }
@@ -159,61 +114,19 @@
 <header>
     <a href="/" class="logo">next<span>AI</span>generation</a>
     <nav>
-        <a href="#laws">Five Laws</a>
-        <a href="/articles/">Articles</a>
+        <a href="/">Home</a>
+        <a href="/articles/" class="active">Articles</a>
+        <a href="/veille.html">Veille</a>
+        <a href="https://gitlab.com/fred-french-touch-srl-group">GitLab</a>
     </nav>
 </header>
 
-<section class="hero">
-    <h1>Your AI. Your Hardware. Your Rules.</h1>
-    <p class="subtitle">
-        Local-first sovereign AI infrastructure. Zero cloud dependency.
-        Zero vendor lock-in. European digital independence.
-    </p>
-    <div class="badge-row">
-        <span class="badge badge-green">LOCAL-FIRST</span>
-        <span class="badge badge-cyan">OPEN MODELS</span>
-        <span class="badge badge-gold">EUROPEAN</span>
-        <span class="badge badge-violet">SOVEREIGN</span>
-    </div>
-</section>
-
-<section class="manifesto" id="laws">
-    <h2>FIVE LAWS</h2>
-    <ul class="laws">
-        <li>
-            <span class="num">I.</span>
-            <span class="law-title">Cognitive Sovereignty</span> —
-            Your data, your compute, your control. No third party sees your prompts.
-        </li>
-        <li>
-            <span class="num">II.</span>
-            <span class="law-title">Local-First</span> —
-            Zero mandatory cloud dependencies. Everything runs on your hardware.
-        </li>
-        <li>
-            <span class="num">III.</span>
-            <span class="law-title">AI as Amplifier</span> —
-            Not replacement. Human-in-the-loop by design.
-        </li>
-        <li>
-            <span class="num">IV.</span>
-            <span class="law-title">Independence</span> —
-            No vendor lock-in. You choose your models. You choose your stack.
-        </li>
-        <li>
-            <span class="num">V.</span>
-            <span class="law-title">Performance</span> —
-            Sub-second latency. Real-time or nothing.
-        </li>
-    </ul>
-</section>
-
-<section class="articles-preview">
-    <h2>// LATEST</h2>
+<section class="content">
+    <h1>Articles</h1>
+    <p class="page-subtitle">Patterns in the AI industry that nobody talks about. Documented. Sourced. Sovereign.</p>
 
     <a href="/articles/02-perplexity-computer-hacking/" class="article-card">
-        <h3>#02 — When Your AI Vendor Activates an Orchestrator on Your Company Without Asking</h3>
+        <h2>#02 — When Your AI Vendor Activates an Orchestrator on Your Company Without Asking</h2>
         <div class="article-meta">
             <span>13 March 2026</span>
             <span class="tag tag-alert">ALERT</span>
@@ -221,9 +134,9 @@
             <span class="tag tag-pattern">PATTERN</span>
         </div>
         <p class="article-excerpt">
-            Perplexity AI activated "Computer" — a cloud orchestrator routing to 20 models
-            with 400+ connectors — on a Belgian company without consent. Opt-out, not opt-in.
-            Documented in real time. Deratized. Published.
+            On March 13, 2026, Perplexity AI activated "Computer" — a cloud orchestrator routing to 20 models
+            with 400+ application connectors — on our Belgian company without asking. Opt-out, not opt-in.
+            We documented everything, deratized our systems, and published the evidence.
         </p>
         <div class="article-langs">
             <span>FR</span>
@@ -232,29 +145,31 @@
     </a>
 
     <a href="/articles/01-the-pattern-nobody-sees/" class="article-card">
-        <h3>#01 — The Pattern Nobody Sees</h3>
+        <h2>#01 — The Pattern Nobody Sees</h2>
         <div class="article-meta">
             <span>11 March 2026</span>
             <span class="tag tag-pattern">PATTERN</span>
             <span class="tag tag-sovereignty">SOVEREIGNTY</span>
         </div>
         <p class="article-excerpt">
-            Default activation. Data extraction through convenience. Lock-in through inertia.
-            Usage-based billing as a trap. The AI industry's recurring playbook, exposed.
+            The AI industry follows a recurring pattern: default activation, data extraction through convenience,
+            lock-in through inertia, and usage-based billing. We break it down with real cases.
         </p>
         <div class="article-langs">
             <span>EN</span>
         </div>
     </a>
+
 </section>
 
 <footer>
     <p>Next AI Generation — Fred French Touch SRL &copy; 2025-2026</p>
     <p style="margin-top: 0.5rem;">
+        <a href="https://gitlab.com/fred-french-touch-srl-group">GitLab</a> ·
         European Digital Sovereignty · Local-First · Open Models
     </p>
     <p style="margin-top: 1rem; color: var(--border);">
-        Tournai, Belgium
+        Sovereign tools. European data. Zero San Francisco in our pipeline.
     </p>
 </footer>
 
