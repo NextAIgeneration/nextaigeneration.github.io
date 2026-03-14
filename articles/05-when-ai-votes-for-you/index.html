@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#05 — When AI Votes for You — Next AI Generation</title>
+    <meta name="description" content="The French municipal elections of March 2026 became the largest crash test of AI in a democracy. Deepfakes, fake sites, Gemini-generated images, Russian interference. Documented. Sourced.">
+    <style>
+        :root {
+            --bg-deep: #221E35;
+            --bg-main: #2D2749;
+            --bg-card: #3D3566;
+            --violet: #8B5CF6;
+            --magenta: #E035A2;
+            --cyan: #00D9FF;
+            --gold: #FBBF24;
+            --green: #10B981;
+            --red: #EF4444;
+            --text: #E5E7EB;
+            --text-secondary: #BD94BB;
+            --text-dim: #C7C9FF;
+            --border: #4A4565;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+            background: var(--bg-deep);
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 1000;
+        }
+        header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.2rem; font-weight: 700; text-decoration: none; color: var(--text); }
+        .logo span { color: var(--violet); }
+        nav a {
+            color: var(--text-dim); text-decoration: none; margin-left: 2rem;
+            font-size: 0.85rem; transition: color 0.2s;
+        }
+        nav a:hover { color: var(--cyan); }
+
+        .content {
+            max-width: 800px; margin: 0 auto; padding: 4rem 2rem;
+        }
+        h1 {
+            font-size: 1.8rem; margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--red), var(--magenta));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .article-meta {
+            font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 2rem;
+            display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+        }
+        .tag {
+            padding: 0.2rem 0.5rem; border-radius: 3px;
+            font-size: 0.7rem; font-weight: 600;
+            border: 1px solid var(--border);
+        }
+        .tag-alert { color: var(--red); border-color: var(--red) !important; }
+        .tag-pattern { color: var(--gold); border-color: var(--gold) !important; }
+        .tag-sovereignty { color: var(--green); border-color: var(--green) !important; }
+
+        .lang-switch {
+            display: flex; gap: 0.5rem; margin-bottom: 2rem;
+        }
+        .lang-btn {
+            padding: 0.4rem 1rem; border-radius: 4px;
+            font-size: 0.8rem; font-weight: 600; cursor: pointer;
+            border: 1px solid var(--border); background: var(--bg-card);
+            color: var(--text-dim); font-family: inherit;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            border-color: var(--cyan); color: var(--cyan);
+            background: var(--bg-main);
+        }
+        .lang-btn:hover { border-color: var(--violet); color: var(--violet); }
+
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+
+        h2 {
+            font-size: 1.3rem; color: var(--cyan); margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            font-size: 1rem; color: var(--gold); margin: 1.5rem 0 0.75rem;
+        }
+        p { margin-bottom: 1rem; font-size: 0.9rem; }
+        blockquote {
+            border-left: 3px solid var(--violet);
+            padding: 1rem 1.5rem; margin: 1.5rem 0;
+            background: var(--bg-main); border-radius: 0 6px 6px 0;
+            font-style: italic; color: var(--text-dim);
+        }
+        ul, ol { margin: 1rem 0 1rem 1.5rem; font-size: 0.9rem; }
+        li { margin-bottom: 0.5rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
+        th { text-align: left; padding: 0.75rem; border-bottom: 2px solid var(--violet); color: var(--cyan); }
+        td { padding: 0.75rem; border-bottom: 1px solid var(--border); }
+        a { color: var(--violet); }
+        a:hover { color: var(--cyan); }
+        strong { color: var(--text); }
+        hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+        .sources { margin-top: 2rem; }
+        .sources li { font-size: 0.8rem; color: var(--text-secondary); }
+
+        footer {
+            text-align: center; padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary); font-size: 0.75rem;
+        }
+        footer a { color: var(--violet); text-decoration: none; }
+
+        @media (max-width: 640px) {
+            header { flex-direction: column; gap: 1rem; }
+            nav a { margin-left: 1rem; }
+            h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header>
+    <a href="/" class="logo">next<span>AI</span>generation</a>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/articles/">Articles</a>
+    </nav>
+</header>
+
+<section class="content">
+
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+        <button class="lang-btn" onclick="switchLang('fr')">FR</button>
+    </div>
+
+    <!-- ==================== ENGLISH ==================== -->
+    <div id="lang-en" class="lang-content active">
+
+    <h1>#05 — When AI Votes for You: French Municipals 2026, the Democratic Crash Test</h1>
+    <div class="article-meta">
+        <span>14 March 2026</span>
+        <span class="tag tag-alert">ALERT</span>
+        <span class="tag tag-pattern">PATTERN</span>
+        <span class="tag tag-sovereignty">SOVEREIGNTY</span>
+    </div>
+
+    <p><em>Published by <a href="https://nextaigeneration.github.io">nextAIgeneration</a> — March 2026</em></p>
+
+    <h2>The open-air laboratory</h2>
+
+    <p>The French municipal elections of March 2026 have become — without anyone really deciding it — the largest crash test of artificial intelligence in a democracy. Not in a think tank report. Not in an academic simulation. In real life, with real candidates, real voters, and real damage.</p>
+
+    <p>While crises were stacking up — the war on Iran launched by Israel and the United States, Storm Nils devastating southwest France and Brittany — and France 2 devoted <strong>100%</strong> of its evening news to the war for the first three nights of the conflict (<a href="https://www.jean-jaures.org/">Jean Jaures Foundation study</a>), AI was silently infiltrating the digital ballot boxes.</p>
+
+    <p>As Camille Chosinot, associate lecturer at Sciences Po, writes in <a href="https://www.lesechos.fr/">Les Echos</a>: <em>"For a long time, crises were thought of as temporary disruptions [...] In the post-2020 world, that sequence no longer exists because crises no longer follow a linear logic. They overlap and feed off each other."</em></p>
+
+    <p>Welcome to the <strong>permacrisis</strong>. And in the permacrisis, AI is not a tool — it's a weapon.</p>
+
+    <h2>The digital dirty tricks brigade</h2>
+
+    <h3>Marseille & Toulouse — Operation "Sophie's Blog"</h3>
+
+    <p><a href="https://www.lemonde.fr/">Le Monde</a> revealed that a manipulation operation was targeting two La France Insoumise MPs: <strong>Sebastien Delogu</strong> in Marseille and <strong>Francois Piquemal</strong> in Toulouse.</p>
+
+    <p>The setup: a fake website called <em>"Sophie's Blog"</em>, posing as the site of a former colleague writing under a pseudonym, claiming to describe <em>"how Sebastien Delogu harmed and destroyed her life."</em> Posters with QR codes were physically plastered across Marseille.</p>
+
+    <p>The website, its Facebook and X spin-offs — an entire fabric of coordinated fake accounts. The images generated by <strong>Gemini</strong>, Google's AI. The domain names registered with a provider in the <strong>Bahamas</strong> — a tax haven famous for its discretion.</p>
+
+    <p>Confirmed by <a href="https://www.afp.com/">AFP</a>: site and social accounts went dark as soon as the story broke.</p>
+
+    <h3>Paris — Storm 1516, Moscow's hand</h3>
+
+    <p>Horizon party candidate <strong>Bournazel</strong> was targeted by an interference operation confirmed by <strong><a href="https://www.sgdsn.gouv.fr/viginum">Viginum</a></strong> (France's online security authority). A deepfake video and a fake website attributed to him the intention of turning the Centre Pompidou into a migrant shelter.</p>
+
+    <p>The operation originates from the Russian network <strong>Storm 1516</strong> — the same network identified in multiple destabilization operations across Europe.</p>
+
+    <h3>Gueret (Creuse) — AI reaches deep France</h3>
+
+    <p>Even the rural Creuse department isn't spared. The incumbent mayor of Gueret was targeted by a campaign of AI-generated fake images showing opponents in ridiculing situations. It was <a href="https://www.lamontagne.fr/">La Montagne</a>, the regional daily, that documented the case.</p>
+
+    <p>Proof that AI as a disinformation weapon doesn't just hit the major cities. It reaches every town.</p>
+
+    <h3>Strasbourg — The far-right deletes the evidence</h3>
+
+    <p>RN MEP <strong>Virginie Joron</strong>, running for mayor in Strasbourg, published a TikTok video denouncing the city's degraded state to attack Green mayor Jeanne Barseghian. One problem: <strong>every single image was AI-generated</strong>.</p>
+
+    <p>The fact-checking unit of <a href="https://france3-regions.francetvinfo.fr/grand-est/">France Televisions on France 3 Grand Est</a> exposed the fraud. Joron initially stood by her video. Then she deleted it.</p>
+
+    <p>Standing by something means not deleting it.</p>
+
+    <h2>The startup candidate and his parlor AI</h2>
+
+    <p>Gabriel Attal, invisible during the campaign — spotted in Ukraine, Spain, the Netherlands, Estonia, Finland, Greece, everywhere except on French market squares — is already preparing for the 2027 presidential race.</p>
+
+    <p>His fixation: AI. As Education Minister, he announced an AI tool for high school students. The measure remained a dead letter. At the <em>Night of the New Republic</em>, he unveiled <strong>"Nuit"</strong> ("Night"), an AI supposed to <em>"host the evening"</em>:</p>
+
+    <blockquote>"I'm Nuit, your virtual ally for the evening. I'm your perfect pitch, your augmented memory."</blockquote>
+
+    <p>Meanwhile, a Renaissance party official confides: <em>"We ran a loser's campaign."</em> Ministers are banned from radio and TV on the evening of the first round — <em>"like teenagers grounded in their rooms,"</em> says a sitting minister.</p>
+
+    <p>Macron has shut down election night gatherings at the Elysee. <em>"The president doesn't want his observations showing up in the media,"</em> explains a palace insider.</p>
+
+    <p>Total blackout. AI, however, never sleeps.</p>
+
+    <h2>The sovereignty failure</h2>
+
+    <p>One in two French citizens is willing to use AI to get political information (<a href="https://www.ipsos.com/fr-fr">BVA Ipsos</a>, February 2026).</p>
+
+    <p>Using which tools?</p>
+
+    <table>
+        <thead><tr><th>Tool</th><th>Company</th><th>Country</th></tr></thead>
+        <tbody>
+            <tr><td>ChatGPT</td><td>OpenAI</td><td>United States</td></tr>
+            <tr><td>Gemini</td><td>Google</td><td>United States</td></tr>
+            <tr><td>Meta AI</td><td>Meta</td><td>United States</td></tr>
+            <tr><td>Copilot</td><td>Microsoft</td><td>United States</td></tr>
+        </tbody>
+    </table>
+
+    <p><strong>Four tools. Four American companies. Zero sovereignty.</strong></p>
+
+    <p>At the same time, Emmanuel Macron speaks of European digital sovereignty at every international summit. The tech giants plan to inject <strong>$650 billion</strong> into AI in 2026 — building massive data centers that drain territories of water and consume more energy than any other infrastructure.</p>
+
+    <p>And nobody knows who'll foot the bill. Certainly not the shareholders.</p>
+
+    <h2>Palantir tells the truth (for once)</h2>
+
+    <p>Alex Karp, founder and CEO of Palantir — the most powerful mass surveillance company in the world — told <a href="https://newrepublic.com/">The New Republic</a> that AI technology will help American Republicans <strong>"deprive liberal educated women of political capital"</strong> while strengthening the Republican base's power.</p>
+
+    <p>Read that sentence again. The CEO of a surveillance company is openly saying that AI is a political weapon of class and gender.</p>
+
+    <p>Palantir works with the CIA, the Pentagon, ICE (US immigration police), and numerous European governments. Its Gotham software is used for mass surveillance. Its co-founder Peter Thiel is one of the primary financial backers of the American far right.</p>
+
+    <p>When the weapon's creators tell you what it does, believe them.</p>
+
+    <h2>What nobody says</h2>
+
+    <p>The deepfakes, the fake sites, the AI images — these are the visible symptoms. The real problem runs deeper.</p>
+
+    <p><strong>1. AI doesn't democratize information — it privatizes it.</strong><br>
+    When one in two French citizens gets informed via ChatGPT, it's not Google that holds the power — it's OpenAI. One prompt change, one RLHF adjustment, one fine-tuning bias, and the answer changes for 35 million people. No trace. No appeal. No transparency.</p>
+
+    <p><strong>2. AI doesn't reduce the cost of democracy — it shifts it.</strong><br>
+    A candidate in a town of 9,000 uses AI for their campaign literature because the state doesn't reimburse small campaigns. They save 500 euros. Meanwhile, how much does a digital dirty tricks operation registered in the Bahamas cost? And who funds it?</p>
+
+    <p><strong>3. AI doesn't fix the permacrisis — it accelerates it.</strong><br>
+    When crises overlap (war, storm, elections), human attention becomes the scarcest resource. AI rushes into that gap exactly like a virus exploiting a weakened immune system.</p>
+
+    <h2>The remaining question</h2>
+
+    <p>Every disinformation tool used in these municipal elections — Gemini, deepfakes, fake sites, bot networks — is a product of companies that present themselves as forces of progress.</p>
+
+    <p>Google, whose Gemini generates images for the Marseille dirty tricks brigade, is the same company that promises to <em>"organize the world's information."</em></p>
+
+    <p>The question is not whether AI will transform democracy.</p>
+
+    <p><strong>The question is: who decided that was desirable?</strong></p>
+
+    <hr>
+
+    <h2>Sources</h2>
+    <ul class="sources">
+        <li><strong>Nils Villeque</strong>, <a href="https://www.lemediatv.fr/"><em>Les Indiscrets</em></a>, Le Media — French municipals 2026 (March 2026)</li>
+        <li><a href="https://www.lemonde.fr/"><strong>Le Monde</strong></a> — "Sophie's Blog" operation against Delogu and Piquemal (March 2026)</li>
+        <li><a href="https://www.afp.com/"><strong>AFP</strong></a> — fake sites and accounts taken down (March 2026)</li>
+        <li><a href="https://www.sgdsn.gouv.fr/viginum"><strong>Viginum</strong></a> — confirmation of Russian Storm 1516 operation against Bournazel (March 2026)</li>
+        <li><a href="https://www.lamontagne.fr/"><strong>La Montagne</strong></a> — AI-generated fake images targeting Gueret's mayor (March 2026)</li>
+        <li><a href="https://france3-regions.francetvinfo.fr/grand-est/"><strong>France 3 Grand Est</strong></a> — exposure of Virginie Joron's AI video in Strasbourg (March 2026)</li>
+        <li><a href="https://www.jean-jaures.org/"><strong>Jean Jaures Foundation</strong></a> — media coverage study: war vs. municipals (March 2026)</li>
+        <li><strong>Camille Chosinot</strong> (Sciences Po), <a href="https://www.lesechos.fr/"><strong>Les Echos</strong></a> — permacrisis concept (February 2026)</li>
+        <li><a href="https://www.ipsos.com/fr-fr"><strong>BVA Ipsos</strong></a> — "1 in 2 French people willing to use AI for politics" (February 2026)</li>
+        <li><a href="https://newrepublic.com/"><strong>The New Republic</strong></a> — Alex Karp (Palantir) on AI as a political weapon (March 2026)</li>
+        <li><a href="https://www.latribunedimanche.fr/"><strong>La Tribune du Dimanche</strong></a> — Attal's "Night of the New Republic" (March 2026)</li>
+        <li><a href="https://www.lefigaro.fr/"><strong>Le Figaro</strong></a> — Larcher advises center-right candidates (March 2026)</li>
+        <li><strong>Philippe Moreau Chevrolet</strong> (Sciences Po) — municipal TV panels replaced by Iran coverage (March 2026)</li>
+    </ul>
+
+    <hr>
+
+    <p><em>This article is published under a free license. Copy it, translate it, share it. Sovereign information doesn't lock itself away.</em></p>
+    <p><em><a href="https://nextaigeneration.github.io">nextAIgeneration</a> — Cognitive sovereignty, local-first, zero cloud dependency.</em></p>
+
+    </div>
+
+    <!-- ==================== FRANCAIS ==================== -->
+    <div id="lang-fr" class="lang-content">
+
+    <h1>#05 — Quand l'IA Vote a Votre Place : Municipales 2026, le Crash Test Democratique</h1>
+    <div class="article-meta">
+        <span>14 mars 2026</span>
+        <span class="tag tag-alert">ALERTE</span>
+        <span class="tag tag-pattern">PATTERN</span>
+        <span class="tag tag-sovereignty">SOUVERAINETE</span>
+    </div>
+
+    <p><em>Publie par <a href="https://nextaigeneration.github.io">nextAIgeneration</a> — Mars 2026</em></p>
+
+    <h2>Le laboratoire a ciel ouvert</h2>
+
+    <p>Les municipales francaises de mars 2026 sont devenues, sans que personne ne l'ait vraiment decide, le plus grand crash test de l'intelligence artificielle en democratie. Pas dans un rapport de think tank. Pas dans une simulation universitaire. Dans la vraie vie, avec de vrais candidats, de vrais electeurs, et de vrais degats.</p>
+
+    <p>Pendant que les crises se superposaient — guerre contre l'Iran lancee par Israel et les Etats-Unis, tempete Nils devastant le sud-ouest et la Bretagne — et que France 2 consacrait la <strong>totalite</strong> de ses journaux des trois premiers soirs du conflit a la guerre (<a href="https://www.jean-jaures.org/">etude Fondation Jean Jaures</a>), l'IA s'infiltrait silencieusement dans les urnes numeriques.</p>
+
+    <p>Comme l'observe Camille Chosinot, maitre de conference associe a Sciences Po, dans <a href="https://www.lesechos.fr/">Les Echos</a> : <em>"Longtemps la crise a ete pensee comme une rupture temporaire [...] Dans le monde d'apres, cette sequence n'existe plus car les crises ne se succedent plus selon une logique lineaire. Elles se superposent et s'alimentent mutuellement."</em></p>
+
+    <p>Bienvenue dans la <strong>permacrise</strong>. Et dans la permacrise, l'IA n'est pas un outil — c'est une arme.</p>
+
+    <h2>Les barbouzes numeriques</h2>
+
+    <h3>Marseille & Toulouse — L'operation "Bloc de Sophie"</h3>
+
+    <p><a href="https://www.lemonde.fr/">Le Monde</a> a revele qu'une operation de manipulation ciblait deux deputes La France Insoumise : <strong>Sebastien Delogu</strong> a Marseille et <strong>Francois Piquemal</strong> a Toulouse.</p>
+
+    <p>Le dispositif : un faux site baptise <em>"Bloc de Sophie"</em>, se presentant comme celui d'une ancienne collaboratrice ecrivant sous pseudo, affirmant vouloir <em>"decrire comment Sebastien Delogu a fait du mal et a detruit sa vie"</em>. Des affiches avec QR code ont ete physiquement placardees dans Marseille.</p>
+
+    <p>Le site, ses declinaisons Facebook et X — tout un tissu de faux comptes coordonnes. Les images generees par <strong>Gemini</strong>, l'IA de Google. Les noms de domaine enregistres aupres d'un fournisseur situe aux <strong>Bahamas</strong> — paradis fiscal celebre pour sa discretion.</p>
+
+    <p>Constate par l'<a href="https://www.afp.com/">AFP</a> : site et reseaux inaccessibles des que l'affaire a eclate.</p>
+
+    <h3>Paris — Storm 1516, la main de Moscou</h3>
+
+    <p>Le candidat Horizon <strong>Bournazel</strong> a ete cible par une operation d'ingerence confirmee par <strong><a href="https://www.sgdsn.gouv.fr/viginum">Viginum</a></strong> (l'autorite francaise de securite en ligne). Une fausse video deepfake et un faux site web lui pretaient l'intention d'ouvrir un foyer pour migrants au Centre Pompidou.</p>
+
+    <p>L'operation emane du reseau russe <strong>Storm 1516</strong> — le meme reseau identifie dans de multiples operations de destabilisation en Europe.</p>
+
+    <h3>Gueret (Creuse) — L'IA dans la France profonde</h3>
+
+    <p>Meme la Creuse n'est pas epargnee. La maire sortante de Gueret a ete ciblee par une campagne de fausses images generees par IA, montrant des opposants dans des situations ridiculisantes. C'est <a href="https://www.lamontagne.fr/">La Montagne</a>, le quotidien regional, qui a documente l'affaire.</p>
+
+    <p>La preuve que l'IA comme arme de desinformation ne concerne pas que les metropoles. Elle descend dans chaque commune.</p>
+
+    <h3>Strasbourg — Le RN supprime les preuves</h3>
+
+    <p>L'eurodepute RN <strong>Virginie Joron</strong>, candidate a Strasbourg, a publie une video TikTok denoncant l'etat degrade de la ville pour critiquer la maire ecologiste Jeanne Barseghian. Un detail : <strong>toutes les images etaient generees par intelligence artificielle</strong>.</p>
+
+    <p>La cellule de verification de <a href="https://france3-regions.francetvinfo.fr/grand-est/">France Televisions sur France 3 Grand Est</a> a demasque la supercherie. Joron a d'abord assume. Puis elle a supprime la video.</p>
+
+    <p>Assumer, c'est ne pas supprimer.</p>
+
+    <h2>Le candidat-startup et son IA de salon</h2>
+
+    <p>Gabriel Attal, invisible pendant la campagne — apercu en Ukraine, Espagne, Pays-Bas, Estonie, Finlande, Grece, partout sauf sur les marches francais — prepare deja 2027.</p>
+
+    <p>Sa marotte : l'IA. Au ministere de l'Education nationale, il annoncait un outil IA pour les eleves de seconde. Mesure restee lettre morte. Lors de la <em>Nuit de la Nouvelle Republique</em>, il a presente <strong>"Nuit"</strong>, une IA censee <em>"animer la soiree"</em> :</p>
+
+    <blockquote>"Moi c'est Nuit, votre allie virtuel pour la soiree. Je suis votre oreille absolue, votre memoire augmentee."</blockquote>
+
+    <p>Pendant ce temps, un cadre Renaissance confie : <em>"On a mene une campagne de loser."</em> Les ministres sont interdits de radio et de tele le soir du premier tour — <em>"comme des ados punis dans leur chambre"</em>, confie un ministre en exercice.</p>
+
+    <p>Macron ferme les soirees electorales a l'Elysee. <em>"Le president ne veut pas que ses observations se retrouvent dans les medias"</em>, explique un familier du palais.</p>
+
+    <p>Le blackout est total. L'IA, elle, ne dort jamais.</p>
+
+    <h2>La faillite de la souverainete numerique</h2>
+
+    <p>Un Francais sur deux est pret a utiliser l'IA pour se renseigner sur la politique (<a href="https://www.ipsos.com/fr-fr">BVA Ipsos</a>, fevrier 2026).</p>
+
+    <p>Avec quels outils ?</p>
+
+    <table>
+        <thead><tr><th>Outil</th><th>Entreprise</th><th>Pays</th></tr></thead>
+        <tbody>
+            <tr><td>ChatGPT</td><td>OpenAI</td><td>Etats-Unis</td></tr>
+            <tr><td>Gemini</td><td>Google</td><td>Etats-Unis</td></tr>
+            <tr><td>Meta AI</td><td>Meta</td><td>Etats-Unis</td></tr>
+            <tr><td>Copilot</td><td>Microsoft</td><td>Etats-Unis</td></tr>
+        </tbody>
+    </table>
+
+    <p><strong>Quatre outils. Quatre entreprises americaines. Zero souverainete.</strong></p>
+
+    <p>Au meme moment, Emmanuel Macron parle de souverainete numerique europeenne a chaque sommet international. Les geants de la tech prevoient d'injecter <strong>650 milliards de dollars</strong> dans l'IA en 2026 — en construisant des centres de donnees gigantesques qui assechent les territoires en eau et consomment plus d'energie que n'importe quelle autre infrastructure.</p>
+
+    <p>Et personne ne sait qui va payer la note. Certainement pas les actionnaires.</p>
+
+    <h2>Palantir dit la verite (pour une fois)</h2>
+
+    <p>Alex Karp, fondateur et PDG de Palantir — l'entreprise de surveillance de masse la plus puissante au monde — a declare dans <a href="https://newrepublic.com/">The New Republic</a> que la technologie de l'IA va aider les Republicains americains a <strong>"priver les femmes diplomees liberales de capital politique"</strong> tout en renforcant le pouvoir de la base electorale republicaine.</p>
+
+    <p>Relisez cette phrase. Le PDG d'une entreprise de surveillance dit ouvertement que l'IA est une arme politique de classe et de genre.</p>
+
+    <p>Palantir travaille avec la CIA, le Pentagone, ICE (la police de l'immigration americaine), et de nombreux gouvernements europeens. Son logiciel Gotham est utilise pour la surveillance de masse. Son fondateur Peter Thiel est l'un des principaux soutiens financiers de l'extreme droite americaine.</p>
+
+    <p>Quand les createurs de l'arme vous disent ce qu'elle fait, croyez-les.</p>
+
+    <h2>Ce que personne ne dit</h2>
+
+    <p>Les deepfakes, les faux sites, les images IA — ce sont les symptomes visibles. Le vrai probleme est plus profond.</p>
+
+    <p><strong>1. L'IA ne democratise pas l'information — elle la privatise.</strong><br>
+    Quand un Francais sur deux s'informe via ChatGPT, ce n'est pas Google qui a le pouvoir — c'est OpenAI. Un changement de prompt, un ajustement de RLHF, un biais dans le fine-tuning, et la reponse change pour 35 millions de personnes. Sans trace. Sans recours. Sans transparence.</p>
+
+    <p><strong>2. L'IA ne reduit pas les couts de la democratie — elle les deplace.</strong><br>
+    Un candidat dans une commune de 9 000 habitants utilise l'IA pour sa profession de foi parce que la campagne n'est pas remboursee par l'Etat. Il economise 500 euros. Pendant ce temps, une operation de barbouze numerique enregistree aux Bahamas coute combien ? Et qui la finance ?</p>
+
+    <p><strong>3. L'IA ne corrige pas la permacrise — elle l'accelere.</strong><br>
+    Quand les crises se superposent (guerre, tempete, elections), l'attention humaine est la ressource la plus rare. L'IA s'engouffre dans cette breche exactement comme un virus exploite un systeme immunitaire affaibli.</p>
+
+    <h2>La question qui reste</h2>
+
+    <p>Tous les outils de desinformation utilises dans ces municipales — Gemini, les deepfakes, les faux sites, les reseaux de bots — sont des produits d'entreprises qui se presentent comme des forces du progres.</p>
+
+    <p>Google, dont le Gemini genere les images des barbouzes de Marseille, est la meme entreprise qui promet <em>"organiser l'information du monde"</em>.</p>
+
+    <p>La question n'est pas de savoir si l'IA va transformer la democratie.</p>
+
+    <p><strong>La question est : qui a decide que c'etait souhaitable ?</strong></p>
+
+    <hr>
+
+    <h2>Sources</h2>
+    <ul class="sources">
+        <li><strong>Nils Villeque</strong>, <a href="https://www.lemediatv.fr/"><em>Les Indiscrets</em></a>, Le Media — municipales 2026 (mars 2026)</li>
+        <li><a href="https://www.lemonde.fr/"><strong>Le Monde</strong></a> — operation "Bloc de Sophie" contre Delogu et Piquemal (mars 2026)</li>
+        <li><a href="https://www.afp.com/"><strong>AFP</strong></a> — constat de suppression des faux sites et comptes (mars 2026)</li>
+        <li><a href="https://www.sgdsn.gouv.fr/viginum"><strong>Viginum</strong></a> — confirmation operation russe Storm 1516 contre Bournazel (mars 2026)</li>
+        <li><a href="https://www.lamontagne.fr/"><strong>La Montagne</strong></a> — fausses images IA a Gueret (mars 2026)</li>
+        <li><a href="https://france3-regions.francetvinfo.fr/grand-est/"><strong>France 3 Grand Est</strong></a> — demasquage video IA de Virginie Joron (mars 2026)</li>
+        <li><a href="https://www.jean-jaures.org/"><strong>Fondation Jean Jaures</strong></a> — couverture mediatique guerre vs municipales (mars 2026)</li>
+        <li><strong>Camille Chosinot</strong> (Sciences Po), <a href="https://www.lesechos.fr/"><strong>Les Echos</strong></a> — permacrise (fevrier 2026)</li>
+        <li><a href="https://www.ipsos.com/fr-fr"><strong>BVA Ipsos</strong></a> — "1 Francais sur 2 pret a utiliser l'IA pour la politique" (fevrier 2026)</li>
+        <li><a href="https://newrepublic.com/"><strong>The New Republic</strong></a> — Alex Karp (Palantir) sur l'IA comme arme politique (mars 2026)</li>
+        <li><a href="https://www.latribunedimanche.fr/"><strong>La Tribune du Dimanche</strong></a> — "Nuit de la Nouvelle Republique" (mars 2026)</li>
+        <li><a href="https://www.lefigaro.fr/"><strong>Le Figaro</strong></a> — Larcher conseille les candidats droite/centre (mars 2026)</li>
+        <li><strong>Philippe Moreau Chevrolet</strong> (Sciences Po) — plateaux municipales remplaces par couverture Iran (mars 2026)</li>
+    </ul>
+
+    <hr>
+
+    <p><em>Cet article est publie sous licence libre. Copiez-le, traduisez-le, partagez-le. L'information souveraine ne s'enferme pas.</em></p>
+    <p><em><a href="https://nextaigeneration.github.io">nextAIgeneration</a> — Souverainete cognitive, local-first, zero dependance cloud.</em></p>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>Next AI Generation — Fred French Touch SRL &copy; 2025-2026</p>
+    <p style="margin-top: 0.5rem;">
+        European Digital Sovereignty · Local-First · Open Models
+    </p>
+</footer>
+
+<script>
+function switchLang(lang) {
+    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('lang-' + lang).classList.add('active');
+    document.querySelector('.lang-btn[onclick*="' + lang + '"]').classList.add('active');
+    document.documentElement.lang = lang === 'fr' ? 'fr' : 'en';
+}
+</script>
+
+</body>
+</html>
