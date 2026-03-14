@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#06 — Omission Warfare — Next AI Generation</title>
+    <meta name="description" content="Lavender. Gospel. Project Nimbus. Six companies. Zero coverage. When the entire political spectrum omits the same information, it's not a bias — it's an architecture. Topological proof via InfraNodeus.">
+    <style>
+        :root {
+            --bg-deep: #221E35;
+            --bg-main: #2D2749;
+            --bg-card: #3D3566;
+            --violet: #8B5CF6;
+            --magenta: #E035A2;
+            --cyan: #00D9FF;
+            --gold: #FBBF24;
+            --green: #10B981;
+            --red: #EF4444;
+            --text: #E5E7EB;
+            --text-secondary: #BD94BB;
+            --text-dim: #C7C9FF;
+            --border: #4A4565;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+            background: var(--bg-deep);
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 1000;
+        }
+        header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.2rem; font-weight: 700; text-decoration: none; color: var(--text); }
+        .logo span { color: var(--violet); }
+        nav a {
+            color: var(--text-dim); text-decoration: none; margin-left: 2rem;
+            font-size: 0.85rem; transition: color 0.2s;
+        }
+        nav a:hover { color: var(--cyan); }
+
+        .content {
+            max-width: 800px; margin: 0 auto; padding: 4rem 2rem;
+        }
+        h1 {
+            font-size: 1.8rem; margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--red), var(--magenta));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .article-meta {
+            font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 2rem;
+            display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+        }
+        .tag {
+            padding: 0.2rem 0.5rem; border-radius: 3px;
+            font-size: 0.7rem; font-weight: 600;
+            border: 1px solid var(--border);
+        }
+        .tag-alert { color: var(--red); border-color: var(--red) !important; }
+        .tag-pattern { color: var(--gold); border-color: var(--gold) !important; }
+        .tag-sovereignty { color: var(--green); border-color: var(--green) !important; }
+
+        .lang-switch {
+            display: flex; gap: 0.5rem; margin-bottom: 2rem;
+        }
+        .lang-btn {
+            padding: 0.4rem 1rem; border-radius: 4px;
+            font-size: 0.8rem; font-weight: 600; cursor: pointer;
+            border: 1px solid var(--border); background: var(--bg-card);
+            color: var(--text-dim); font-family: inherit;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            border-color: var(--cyan); color: var(--cyan);
+            background: var(--bg-main);
+        }
+        .lang-btn:hover { border-color: var(--violet); color: var(--violet); }
+
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+
+        h2 {
+            font-size: 1.3rem; color: var(--cyan); margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            font-size: 1rem; color: var(--gold); margin: 1.5rem 0 0.75rem;
+        }
+        p { margin-bottom: 1rem; font-size: 0.9rem; }
+        blockquote {
+            border-left: 3px solid var(--violet);
+            padding: 1rem 1.5rem; margin: 1.5rem 0;
+            background: var(--bg-main); border-radius: 0 6px 6px 0;
+            font-style: italic; color: var(--text-dim);
+        }
+        ul, ol { margin: 1rem 0 1rem 1.5rem; font-size: 0.9rem; }
+        li { margin-bottom: 0.5rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
+        th { text-align: left; padding: 0.75rem; border-bottom: 2px solid var(--violet); color: var(--cyan); }
+        td { padding: 0.75rem; border-bottom: 1px solid var(--border); }
+        a { color: var(--violet); }
+        a:hover { color: var(--cyan); }
+        strong { color: var(--text); }
+        hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+        .sources { margin-top: 2rem; }
+        .sources li { font-size: 0.8rem; color: var(--text-secondary); }
+
+        footer {
+            text-align: center; padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary); font-size: 0.75rem;
+        }
+        footer a { color: var(--violet); text-decoration: none; }
+
+        @media (max-width: 640px) {
+            header { flex-direction: column; gap: 1rem; }
+            nav a { margin-left: 1rem; }
+            h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header>
+    <a href="/" class="logo">next<span>AI</span>generation</a>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/articles/">Articles</a>
+    </nav>
+</header>
+
+<section class="content">
+
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+        <button class="lang-btn" onclick="switchLang('fr')">FR</button>
+    </div>
+
+    <!-- ==================== ENGLISH ==================== -->
+    <div id="lang-en" class="lang-content active">
+
+    <h1>#06 — Omission Warfare: What Neither Trump Nor Democracy Now Will Tell You</h1>
+    <div class="article-meta">
+        <span>14 March 2026</span>
+        <span class="tag tag-alert">ALERT</span>
+        <span class="tag tag-pattern">PATTERN</span>
+        <span class="tag tag-sovereignty">SOVEREIGNTY</span>
+    </div>
+
+    <p><em>Published by <a href="https://nextaigeneration.github.io">nextAIgeneration</a> — March 2026</em></p>
+
+    <h2>Silence is a weapon</h2>
+
+    <p>There are three ways to lie in wartime:</p>
+
+    <p><strong>1. Invent.</strong> That's what Trump does. Fabricated facts, made-up numbers, statements contradicted in the same sentence. Active lying. Detectable, crude, effective on his base.</p>
+
+    <p><strong>2. Frame.</strong> That's what CNN, the BBC, France 2 do. Show selected images, ask authorized questions, never cross the line. Lying by dilution. More subtle, more dangerous.</p>
+
+    <p><strong>3. Omit.</strong> That's what <em>all media</em> do — including the "independents," including Democracy Now, including the bravest journalists. Not naming what connects the facts together. Lying by subtraction. Invisible. Structural. Unstoppable.</p>
+
+    <p>When <strong>the entire</strong> political spectrum — from Fox News to Democracy Now — omits the same information, it's no longer a bias.</p>
+
+    <p><strong>It's an architecture.</strong></p>
+
+    <h2>What the courageous sources say</h2>
+
+    <h3>Gideon Levy — Haaretz, 40 years in the field</h3>
+
+    <p>Gideon Levy has covered the West Bank every week for decades. His numbers are verifiable:</p>
+
+    <ul>
+        <li><strong>93%</strong> of Israeli Jews support the war on Iran (<a href="https://www.idi.org.il/">Israeli Democracy Institute</a>)</li>
+        <li><strong>6 million</strong> displaced: 3.2 million in Iran, 800,000 in Lebanon, 2 million in Gaza</li>
+        <li><strong>70,000</strong> victims in Gaza. <strong>1,000</strong> babies killed</li>
+        <li><strong>100%</strong> of Israeli TV coverage aligned with the war — <em>"North Korean figures"</em></li>
+        <li>The West Bank locked behind metal gates — <em>"the whole thing looks like a collection of concentration camps"</em></li>
+        <li>No international journalists allowed in Gaza. CNN prefaces its reports from Iran as "controlled" but doesn't say the same from Israel</li>
+    </ul>
+
+    <p>Levy is a first-rate source. His assessment is damning.</p>
+
+    <h3>Richard Medhurst — Accredited UN journalist, IFJ member</h3>
+
+    <p>Richard Medhurst pays the price for his work: arrested in the United Kingdom under anti-terrorism laws for practicing journalism. His facts are documented:</p>
+
+    <ul>
+        <li><strong>B-52s and B-1s</strong> rearmed at RAF Fairford (Gloucestershire) in broad daylight, munitions visible: GBU-31 (2,000 lb), GBU-38 (500 lb), AGM-158 (stealth cruise missile)</li>
+        <li><strong>Starmer</strong>: <em>"The UK played no role"</em> then, minutes later in the same speech: <em>"Our forces are active, British planes are in the sky"</em></li>
+        <li><strong>Tomahawk</strong> cruise missiles use parts manufactured in <strong>Scotland</strong> — the UK is in the supply chain</li>
+        <li><strong>RAF Akrotiri</strong> (Cyprus): NSA presence, signals intelligence listening stations, hundreds of American troops</li>
+        <li>Former NATO Deputy Supreme Allied Commander <strong>Richard Shirreff</strong>: <em>"The special relationship does not exist. It is a complete fantasy"</em></li>
+        <li><strong>Trump</strong> accuses Starmer of <em>"seeking to join wars after we've already won"</em></li>
+    </ul>
+
+    <p>Both journalists do essential work. But neither asks one question.</p>
+
+    <h2>The question nobody asks</h2>
+
+    <p>Neither Levy, nor Medhurst, nor Democracy Now, nor CNN, nor the BBC, nor France 2 name:</p>
+
+    <h3>Lavender</h3>
+
+    <p>Israeli military artificial intelligence system. Marked <strong>tens of thousands</strong> of Palestinians as targets since October 2023. Exposed by <a href="https://www.972mag.com/">+972 Magazine</a> and <a href="https://www.local-call.co.il/">Local Call</a> in April 2024, based on testimonies from Israeli military intelligence officers.</p>
+
+    <p>Average human review per target: <strong>20 seconds.</strong></p>
+
+    <h3>Gospel (Habsora)</h3>
+
+    <p>AI target generation system — buildings, infrastructure. <strong>100 targets per day</strong>, compared to 50 per year before deployment. The machine industrializes destruction.</p>
+
+    <h3>Where's Daddy?</h3>
+
+    <p>AI tracking system that follows targets to their <strong>family homes</strong>. Strikes are triggered when the target is surrounded by their family.</p>
+
+    <p>That system carries that name. We didn't make it up.</p>
+
+    <h3>Project Nimbus</h3>
+
+    <p><strong>$1.2 billion</strong> contract signed in 2021 between the Israeli government and military on one side, and <strong>Google</strong> and <strong>Amazon (AWS)</strong> on the other. Cloud infrastructure for military operations.</p>
+
+    <p>Google employees protested publicly. They were <strong>fired</strong>. The campaign is called <a href="https://www.notechforapartheid.com/">No Tech for Apartheid</a>.</p>
+
+    <h3>Palantir</h3>
+
+    <p>Its <strong>Gotham</strong> software is used by Israeli military intelligence. CEO Alex Karp publicly stated in <a href="https://newrepublic.com/">The New Republic</a> that AI will help American Republicans <em>"deprive liberal educated women of political capital."</em> Co-founder <strong>Peter Thiel</strong> is one of the primary financial backers of the American far right.</p>
+
+    <h3>Microsoft Azure</h3>
+
+    <p>Cloud services provided to the Israeli military. Infrastructure supporting IDF operations.</p>
+
+    <h2>Six companies. Zero coverage.</h2>
+
+    <table>
+        <thead><tr><th>Company</th><th>Tool</th><th>Military use</th><th>Media coverage</th></tr></thead>
+        <tbody>
+            <tr><td>Google</td><td>Cloud (Nimbus)</td><td>Targeting infrastructure</td><td>Near zero</td></tr>
+            <tr><td>Amazon</td><td>AWS (Nimbus)</td><td>Operations infrastructure</td><td>Near zero</td></tr>
+            <tr><td>Palantir</td><td>Gotham</td><td>IDF intelligence</td><td>Marginal</td></tr>
+            <tr><td>Microsoft</td><td>Azure</td><td>Military cloud</td><td>Zero</td></tr>
+            <tr><td>OpenAI</td><td>Pentagon contract</td><td>Intelligence</td><td>Zero</td></tr>
+            <tr><td>Meta</td><td>Gaza moderation</td><td>Palestinian content suppression</td><td>Documented by HRW</td></tr>
+        </tbody>
+    </table>
+
+    <p>The same companies that provide automated targeting infrastructure present themselves as forces of progress. They publish reports on <em>"ethical AI."</em> They sponsor conferences on <em>"responsible AI."</em> They fund the media that omit naming them.</p>
+
+    <h2>The topological proof</h2>
+
+    <p>We submitted Gideon Levy's (Democracy Now) and Richard Medhurst's transcripts to a knowledge graph analysis via <a href="https://infranodus.com/">InfraNodeus</a>.</p>
+
+    <p><strong>Result: 12 topical clusters, modularity 0.68</strong></p>
+
+    <p>The "Lavender AI" and "algorithmic civilian casualty ratio" clusters have a <strong>topological influence of 0%</strong> in the analyzed discourse.</p>
+
+    <p>Zero. Not marginal. Not low. <strong>Zero.</strong></p>
+
+    <p>Three missing structural bridges identified:</p>
+
+    <p><strong>1. Tech contracts &harr; Physical munitions</strong> — Google/Amazon are never linked to the B-52s at RAF Fairford. The digital pipeline and the physical pipeline are treated as separate. They are not.</p>
+
+    <p><strong>2. Geopolitical conflict &harr; Tech infrastructure</strong> — The war is presented as a territorial conflict. It is a techno-industrial operation. Without Project Nimbus, Lavender doesn't run.</p>
+
+    <p><strong>3. Political leaders &harr; Military-tech complex</strong> — Starmer and Trump are presented as autonomous actors. They are interfaces. The same lobbyists fund the campaigns and sign the contracts.</p>
+
+    <p>When a topic's topological influence is zero in the discourse, the omission is <strong>structural</strong>. It's not an oversight. It's an architecture.</p>
+
+    <h2>What nobody says (continued)</h2>
+
+    <p>The acceptable civilian casualty ratio is set by an algorithm.</p>
+
+    <p>Up to <strong>15 civilians</strong> per junior militant. Up to <strong>100 civilians</strong> per senior commander.</p>
+
+    <p>These are not collateral damage. They are <strong>parameters</strong>.</p>
+
+    <p>An engineer wrote those thresholds. A manager validated them. A company hosts them on its cloud. A $1.2 billion contract guarantees continuity of service.</p>
+
+    <p>And nobody talks about it. Not on the left. Not on the right. Not in the center.</p>
+
+    <h2>The antidote</h2>
+
+    <p>We used AI to write this article. We used AI to analyze the topology of omissions. We used AI to identify the structural bridges that media discourse refuses to build.</p>
+
+    <p>The same technology that enables Lavender to generate kill lists enables InfraNodeus to expose the gaps in media coverage. The same architecture that allows Gospel to produce 100 targets per day allows a knowledge graph to mathematically prove that a subject is being systematically erased from public discourse.</p>
+
+    <p><strong>AI is neither good nor bad. It amplifies the intent of whoever holds it.</strong></p>
+
+    <p>Lavender selects targets to kill. We use the same tools to expose those who build them and those who hide them.</p>
+
+    <p>The difference is not technical. It is <strong>moral</strong>.</p>
+
+    <p>And this difference is reproducible. Anyone can take a transcript, submit it to a topological analysis, and see what's missing. The tools exist. The methodology is open. Sovereign information doesn't lock itself away.</p>
+
+    <hr>
+
+    <h2>Sources</h2>
+    <ul class="sources">
+        <li><strong>Gideon Levy</strong>, <a href="https://www.haaretz.com/">Haaretz</a> — <em>"Everyone in This Country Has Gone Insane"</em>, <em>"The Israeli Media Are First and Foremost IDF Soldiers"</em> (March 2026)</li>
+        <li><strong>Richard Medhurst</strong>, accredited UN/IFJ journalist — reporting on RAF Fairford, UK bases, Iran strikes (March 2026)</li>
+        <li><a href="https://www.idi.org.il/"><strong>Israeli Democracy Institute</strong></a> — 93% war support survey (March 2026)</li>
+        <li><a href="https://www.972mag.com/"><strong>+972 Magazine</strong></a> — Lavender AI investigation (April 2024)</li>
+        <li><a href="https://www.local-call.co.il/"><strong>Local Call</strong></a> — IDF intelligence officers' testimonies on algorithmic targeting (April 2024)</li>
+        <li><a href="https://www.theguardian.com/"><strong>The Guardian</strong></a> — <em>"The machine did it coldly: Israel used AI to identify 37,000 Hamas targets"</em> (April 2024)</li>
+        <li><a href="https://www.notechforapartheid.com/"><strong>No Tech for Apartheid</strong></a> — Google employees' campaign against Project Nimbus</li>
+        <li><a href="https://www.hrw.org/"><strong>Human Rights Watch</strong></a> — Meta moderation / Palestinian content report (2023-2024)</li>
+        <li><a href="https://newrepublic.com/"><strong>The New Republic</strong></a> — Alex Karp (Palantir) on AI as a political weapon (March 2026)</li>
+        <li><a href="https://www.declassifieduk.org/"><strong>Declassified UK</strong></a> — US military bases in the UK and Cyprus</li>
+        <li><strong>Topological analysis</strong>: <a href="https://infranodus.com/">InfraNodeus</a> — modularity 0.68, 12 clusters, 137 nodes, 387 edges</li>
+        <li><strong>Richard Shirreff</strong>, former NATO Deputy Supreme Allied Commander — <em>"The special relationship does not exist"</em> (March 2026)</li>
+    </ul>
+
+    <hr>
+
+    <p><em>This article is published under a free license. Copy it, translate it, share it. Sovereign information doesn't lock itself away.</em></p>
+    <p><em><a href="https://nextaigeneration.github.io">nextAIgeneration</a> — Cognitive sovereignty, local-first, zero cloud dependency.</em></p>
+
+    </div>
+
+    <!-- ==================== FRANCAIS ==================== -->
+    <div id="lang-fr" class="lang-content">
+
+    <h1>#06 — La Guerre par Omission : Ce que Ni Trump Ni Democracy Now Ne Vous Diront</h1>
+    <div class="article-meta">
+        <span>14 mars 2026</span>
+        <span class="tag tag-alert">ALERTE</span>
+        <span class="tag tag-pattern">PATTERN</span>
+        <span class="tag tag-sovereignty">SOUVERAINETE</span>
+    </div>
+
+    <p><em>Publie par <a href="https://nextaigeneration.github.io">nextAIgeneration</a> — Mars 2026</em></p>
+
+    <h2>Le silence est une arme</h2>
+
+    <p>Il existe trois facons de mentir en temps de guerre :</p>
+
+    <p><strong>1. Inventer.</strong> C'est ce que fait Trump. Des faits fabriques, des chiffres inventes, des declarations contredites dans la meme phrase. Le mensonge actif. Detectable, grossier, efficace sur sa base.</p>
+
+    <p><strong>2. Cadrer.</strong> C'est ce que font CNN, la BBC, France 2. Montrer les images selectionnees, poser les questions autorisees, ne jamais depasser la ligne. Le mensonge par dilution. Plus subtil, plus dangereux.</p>
+
+    <p><strong>3. Omettre.</strong> C'est ce que font <em>tous les medias</em> — y compris les "independants", y compris Democracy Now, y compris les journalistes les plus courageux. Ne pas nommer ce qui relie les faits entre eux. Le mensonge par soustraction. Invisible. Structurel. Imparable.</p>
+
+    <p>Quand <strong>tout</strong> le spectre politique — de Fox News a Democracy Now — omet la meme information, ce n'est plus un biais.</p>
+
+    <p><strong>C'est une architecture.</strong></p>
+
+    <h2>Ce que disent les sources courageuses</h2>
+
+    <h3>Gideon Levy — Haaretz, 40 ans de terrain</h3>
+
+    <p>Gideon Levy couvre la Cisjordanie chaque semaine depuis des decennies. Ses chiffres sont verifiables :</p>
+
+    <ul>
+        <li><strong>93%</strong> des Juifs israeliens soutiennent la guerre contre l'Iran (<a href="https://www.idi.org.il/">Israeli Democracy Institute</a>)</li>
+        <li><strong>6 millions</strong> de deplaces : 3,2 millions en Iran, 800 000 au Liban, 2 millions a Gaza</li>
+        <li><strong>70 000</strong> victimes a Gaza. <strong>1 000</strong> bebes tues</li>
+        <li><strong>100%</strong> de la couverture TV israelienne alignee sur la guerre — <em>"des chiffres nord-coreens"</em></li>
+        <li>La Cisjordanie verrouillee par des portails metalliques — <em>"le tout ressemble a une collection de camps de concentration"</em></li>
+        <li>Aucun journaliste international autorise a Gaza. CNN preface ses reportages depuis l'Iran comme "controles" mais ne dit pas la meme chose depuis Israel</li>
+    </ul>
+
+    <p>Levy est une source de premier ordre. Son constat est accablant.</p>
+
+    <h3>Richard Medhurst — Journaliste accredite ONU, membre IFJ</h3>
+
+    <p>Richard Medhurst paie le prix de son travail : arrete au Royaume-Uni sous les lois anti-terrorisme pour avoir fait du journalisme. Ses faits sont documentes :</p>
+
+    <ul>
+        <li><strong>B-52 et B-1</strong> rearmes a RAF Fairford (Gloucestershire) en plein jour, munitions visibles : GBU-31 (900 kg), GBU-38 (230 kg), AGM-158 (missile de croisiere furtif)</li>
+        <li><strong>Starmer</strong> : <em>"Le Royaume-Uni n'a joue aucun role"</em> puis, quelques minutes plus tard dans le meme discours : <em>"Nos forces sont actives, des avions britanniques sont dans le ciel"</em></li>
+        <li>Les missiles <strong>Tomahawk</strong> utilisent des pieces fabriquees en <strong>Ecosse</strong> — le Royaume-Uni est dans la chaine d'approvisionnement</li>
+        <li><strong>RAF Akrotiri</strong> (Chypre) : presence NSA, stations d'ecoute signals intelligence, centaines de troupes americaines</li>
+        <li>L'ancien commandant supreme adjoint de l'OTAN, <strong>Richard Shirreff</strong> : <em>"La relation speciale n'existe pas. C'est une pure fiction"</em></li>
+        <li><strong>Trump</strong> accuse Starmer de <em>"chercher a rejoindre des guerres apres qu'on les a deja gagnees"</em></li>
+    </ul>
+
+    <p>Ces deux journalistes font un travail essentiel. Mais aucun des deux ne pose une question.</p>
+
+    <h2>La question que personne ne pose</h2>
+
+    <p>Ni Levy, ni Medhurst, ni Democracy Now, ni CNN, ni la BBC, ni France 2 ne nomment :</p>
+
+    <h3>Lavender</h3>
+
+    <p>Systeme d'intelligence artificielle de l'armee israelienne. A marque <strong>des dizaines de milliers</strong> de Palestiniens comme cibles depuis octobre 2023. Expose par <a href="https://www.972mag.com/">+972 Magazine</a> et <a href="https://www.local-call.co.il/">Local Call</a> en avril 2024, sur la base de temoignages d'officiers du renseignement militaire israelien.</p>
+
+    <p>Revue humaine moyenne par cible : <strong>20 secondes.</strong></p>
+
+    <h3>Gospel (Habsora)</h3>
+
+    <p>Systeme IA de generation de cibles — batiments, infrastructures. <strong>100 cibles par jour</strong>, contre 50 par an avant son deploiement. La machine industrialise la destruction.</p>
+
+    <h3>Where's Daddy?</h3>
+
+    <p>Systeme IA de tracking qui suit les cibles jusqu'a leur <strong>domicile familial</strong>. Les frappes sont declenchees quand la cible est entouree de sa famille.</p>
+
+    <p>Ce systeme porte ce nom. Ce n'est pas nous qui l'avons invente.</p>
+
+    <h3>Project Nimbus</h3>
+
+    <p>Contrat de <strong>1,2 milliard de dollars</strong> signe en 2021 entre le gouvernement et l'armee israeliens d'une part, et <strong>Google</strong> et <strong>Amazon (AWS)</strong> d'autre part. Infrastructure cloud pour les operations militaires.</p>
+
+    <p>Des employes de Google ont proteste publiquement. Ils ont ete <strong>licencies</strong>. La campagne s'appelle <a href="https://www.notechforapartheid.com/">No Tech for Apartheid</a>.</p>
+
+    <h3>Palantir</h3>
+
+    <p>Le logiciel <strong>Gotham</strong> est utilise par le renseignement militaire israelien. Le CEO Alex Karp a declare publiquement dans <a href="https://newrepublic.com/">The New Republic</a> que l'IA aidera les Republicains americains a <em>"priver les femmes diplomees liberales de capital politique"</em>. Le co-fondateur <strong>Peter Thiel</strong> est l'un des principaux financeurs de l'extreme droite americaine.</p>
+
+    <h3>Microsoft Azure</h3>
+
+    <p>Services cloud fournis a l'armee israelienne. Infrastructure soutenant les operations de Tsahal.</p>
+
+    <h2>Six entreprises. Zero couverture.</h2>
+
+    <table>
+        <thead><tr><th>Entreprise</th><th>Outil</th><th>Usage militaire</th><th>Couverture mediatique</th></tr></thead>
+        <tbody>
+            <tr><td>Google</td><td>Cloud (Nimbus)</td><td>Infrastructure ciblage</td><td>Quasi nulle</td></tr>
+            <tr><td>Amazon</td><td>AWS (Nimbus)</td><td>Infrastructure operations</td><td>Quasi nulle</td></tr>
+            <tr><td>Palantir</td><td>Gotham</td><td>Renseignement IDF</td><td>Marginale</td></tr>
+            <tr><td>Microsoft</td><td>Azure</td><td>Cloud militaire</td><td>Nulle</td></tr>
+            <tr><td>OpenAI</td><td>Contrat Pentagone</td><td>Renseignement</td><td>Nulle</td></tr>
+            <tr><td>Meta</td><td>Moderation Gaza</td><td>Suppression contenu palestinien</td><td>Documentee par HRW</td></tr>
+        </tbody>
+    </table>
+
+    <p>Les memes entreprises qui fournissent l'infrastructure de ciblage automatise se presentent comme des forces du progres. Elles publient des rapports sur l'<em>"IA ethique"</em>. Elles sponsorisent des conferences sur l'<em>"IA responsable"</em>. Elles financent les medias qui omettent de les nommer.</p>
+
+    <h2>La preuve topologique</h2>
+
+    <p>Nous avons soumis les transcripts de Gideon Levy (Democracy Now) et de Richard Medhurst a une analyse de graphe de connaissances via <a href="https://infranodus.com/">InfraNodeus</a>.</p>
+
+    <p><strong>Resultat : 12 clusters topiques, modularite 0.68</strong></p>
+
+    <p>Les clusters "Lavender AI" et "ratio de victimes civiles algorithmique" ont une <strong>influence topologique de 0%</strong> dans le discours analyse.</p>
+
+    <p>Zero. Pas marginale. Pas faible. <strong>Zero.</strong></p>
+
+    <p>Trois ponts structurels manquants identifies :</p>
+
+    <p><strong>1. Contrats tech &harr; Munitions physiques</strong> — Google/Amazon ne sont jamais relies aux B-52 de RAF Fairford. La tuyauterie numerique et la tuyauterie physique sont traitees comme separees. Elles ne le sont pas.</p>
+
+    <p><strong>2. Conflit geopolitique &harr; Infrastructure tech</strong> — La guerre est presentee comme un conflit territorial. Elle est une operation techno-industrielle. Sans Project Nimbus, Lavender ne tourne pas.</p>
+
+    <p><strong>3. Decideurs politiques &harr; Complexe militaro-tech</strong> — Starmer et Trump sont presentes comme acteurs autonomes. Ils sont des interfaces. Les memes lobbyistes financent les campagnes et signent les contrats.</p>
+
+    <p>Quand l'influence topologique d'un sujet est nulle dans le discours, l'omission est <strong>structurelle</strong>. Ce n'est pas un oubli. C'est une architecture.</p>
+
+    <h2>Ce que personne ne dit (bis)</h2>
+
+    <p>Le ratio de victimes civiles acceptables est fixe par un algorithme.</p>
+
+    <p>Jusqu'a <strong>15 civils</strong> par militant junior. Jusqu'a <strong>100 civils</strong> par commandant senior.</p>
+
+    <p>Ce ne sont pas des dommages collateraux. Ce sont des <strong>parametres</strong>.</p>
+
+    <p>Un ingenieur a ecrit ces seuils. Un manager les a valides. Une entreprise les heberge sur son cloud. Un contrat de 1,2 milliard garantit la continuite du service.</p>
+
+    <p>Et personne n'en parle. Ni a gauche. Ni a droite. Ni au centre.</p>
+
+    <h2>L'antidote</h2>
+
+    <p>Nous avons utilise une IA pour ecrire cet article. Nous avons utilise une IA pour analyser la topologie des omissions. Nous avons utilise une IA pour identifier les ponts structurels que le discours mediatique refuse de construire.</p>
+
+    <p>La meme technologie qui permet a Lavender de generer des listes de cibles permet a InfraNodeus d'exposer les trous dans la couverture mediatique. La meme architecture qui permet a Gospel de produire 100 cibles par jour permet a un graphe de connaissances de prouver mathematiquement qu'un sujet est systematiquement efface du discours public.</p>
+
+    <p><strong>L'IA n'est ni bonne ni mauvaise. Elle amplifie l'intention de celui qui la tient.</strong></p>
+
+    <p>Lavender selectionne des cibles a tuer. Nous utilisons les memes outils pour exposer ceux qui les construisent et ceux qui les cachent.</p>
+
+    <p>La difference n'est pas technique. Elle est <strong>morale</strong>.</p>
+
+    <p>Et cette difference est reproductible. N'importe qui peut prendre un transcript, le soumettre a une analyse topologique, et voir ce qui manque. Les outils existent. La methodologie est ouverte. L'information souveraine ne s'enferme pas.</p>
+
+    <hr>
+
+    <h2>Sources</h2>
+    <ul class="sources">
+        <li><strong>Gideon Levy</strong>, <a href="https://www.haaretz.com/">Haaretz</a> — <em>"Everyone in This Country Has Gone Insane"</em>, <em>"The Israeli Media Are First and Foremost IDF Soldiers"</em> (mars 2026)</li>
+        <li><strong>Richard Medhurst</strong>, journaliste accredite ONU/IFJ — reportage sur RAF Fairford, bases UK, frappes Iran (mars 2026)</li>
+        <li><a href="https://www.idi.org.il/"><strong>Israeli Democracy Institute</strong></a> — sondage 93% soutien guerre (mars 2026)</li>
+        <li><a href="https://www.972mag.com/"><strong>+972 Magazine</strong></a> — enquete Lavender AI (avril 2024)</li>
+        <li><a href="https://www.local-call.co.il/"><strong>Local Call</strong></a> — temoignages officiers renseignement IDF sur ciblage algorithmique (avril 2024)</li>
+        <li><a href="https://www.theguardian.com/"><strong>The Guardian</strong></a> — <em>"The machine did it coldly: Israel used AI to identify 37,000 Hamas targets"</em> (avril 2024)</li>
+        <li><a href="https://www.notechforapartheid.com/"><strong>No Tech for Apartheid</strong></a> — campagne employes Google contre Project Nimbus</li>
+        <li><a href="https://www.hrw.org/"><strong>Human Rights Watch</strong></a> — rapport moderation Meta/contenu palestinien (2023-2024)</li>
+        <li><a href="https://newrepublic.com/"><strong>The New Republic</strong></a> — Alex Karp (Palantir) sur l'IA comme arme politique (mars 2026)</li>
+        <li><a href="https://www.declassifieduk.org/"><strong>Declassified UK</strong></a> — bases militaires US au Royaume-Uni et a Chypre</li>
+        <li><strong>Analyse topologique</strong> : <a href="https://infranodus.com/">InfraNodeus</a> — modularite 0.68, 12 clusters, 137 noeuds, 387 aretes</li>
+        <li><strong>Richard Shirreff</strong>, ancien commandant supreme adjoint OTAN — <em>"La relation speciale n'existe pas"</em> (mars 2026)</li>
+    </ul>
+
+    <hr>
+
+    <p><em>Cet article est publie sous licence libre. Copiez-le, traduisez-le, partagez-le. L'information souveraine ne s'enferme pas.</em></p>
+    <p><em><a href="https://nextaigeneration.github.io">nextAIgeneration</a> — Souverainete cognitive, local-first, zero dependance cloud.</em></p>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>Next AI Generation — Fred French Touch SRL &copy; 2025-2026</p>
+    <p style="margin-top: 0.5rem;">
+        European Digital Sovereignty · Local-First · Open Models
+    </p>
+</footer>
+
+<script>
+function switchLang(lang) {
+    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('lang-' + lang).classList.add('active');
+    document.querySelector('.lang-btn[onclick*="' + lang + '"]').classList.add('active');
+    document.documentElement.lang = lang === 'fr' ? 'fr' : 'en';
+}
+</script>
+
+</body>
+</html>
