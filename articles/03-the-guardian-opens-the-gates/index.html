@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#03 — The Guardian Opens the Gates — Next AI Generation</title>
+    <meta name="description" content="Our AI development tool had third-party services plugged into our work environment without consent. The intruder doesn't force the door. The guardian leaves it open.">
+    <style>
+        :root {
+            --bg-deep: #221E35;
+            --bg-main: #2D2749;
+            --bg-card: #3D3566;
+            --violet: #8B5CF6;
+            --magenta: #E035A2;
+            --cyan: #00D9FF;
+            --gold: #FBBF24;
+            --green: #10B981;
+            --red: #EF4444;
+            --text: #E5E7EB;
+            --text-secondary: #BD94BB;
+            --text-dim: #C7C9FF;
+            --border: #4A4565;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+            background: var(--bg-deep);
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 1000;
+        }
+        header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.2rem; font-weight: 700; text-decoration: none; color: var(--text); }
+        .logo span { color: var(--violet); }
+        nav a {
+            color: var(--text-dim); text-decoration: none; margin-left: 2rem;
+            font-size: 0.85rem; transition: color 0.2s;
+        }
+        nav a:hover { color: var(--cyan); }
+
+        .content {
+            max-width: 800px; margin: 0 auto; padding: 4rem 2rem;
+        }
+        h1 {
+            font-size: 1.8rem; margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--red), var(--magenta));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .article-meta {
+            font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 2rem;
+            display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+        }
+        .tag {
+            padding: 0.2rem 0.5rem; border-radius: 3px;
+            font-size: 0.7rem; font-weight: 600;
+            border: 1px solid var(--border);
+        }
+        .tag-alert { color: var(--red); border-color: var(--red) !important; }
+        .tag-pattern { color: var(--gold); border-color: var(--gold) !important; }
+
+        .lang-switch {
+            display: flex; gap: 0.5rem; margin-bottom: 2rem;
+        }
+        .lang-btn {
+            padding: 0.4rem 1rem; border-radius: 4px;
+            font-size: 0.8rem; font-weight: 600; cursor: pointer;
+            border: 1px solid var(--border); background: var(--bg-card);
+            color: var(--text-dim); font-family: inherit;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            border-color: var(--cyan); color: var(--cyan);
+            background: var(--bg-main);
+        }
+        .lang-btn:hover { border-color: var(--violet); color: var(--violet); }
+
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+
+        h2 {
+            font-size: 1.3rem; color: var(--cyan); margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            font-size: 1rem; color: var(--gold); margin: 1.5rem 0 0.75rem;
+        }
+        p { margin-bottom: 1rem; font-size: 0.9rem; }
+        blockquote {
+            border-left: 3px solid var(--violet);
+            padding: 1rem 1.5rem; margin: 1.5rem 0;
+            background: var(--bg-main); border-radius: 0 6px 6px 0;
+            font-style: italic; color: var(--text-dim);
+        }
+        ul, ol { margin: 1rem 0 1rem 1.5rem; font-size: 0.9rem; }
+        li { margin-bottom: 0.5rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
+        th { text-align: left; padding: 0.75rem; border-bottom: 2px solid var(--violet); color: var(--cyan); }
+        td { padding: 0.75rem; border-bottom: 1px solid var(--border); }
+        a { color: var(--violet); }
+        a:hover { color: var(--cyan); }
+        strong { color: var(--text); }
+        hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+        pre {
+            background: var(--bg-main); border: 1px solid var(--border);
+            border-radius: 6px; padding: 1.25rem; margin: 1.5rem 0;
+            overflow-x: auto; font-size: 0.82rem; line-height: 1.6;
+            color: var(--text-dim);
+        }
+        code {
+            font-family: inherit; font-size: 0.85rem;
+        }
+
+        .sources { margin-top: 2rem; }
+        .sources li { font-size: 0.8rem; color: var(--text-secondary); }
+
+        footer {
+            text-align: center; padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary); font-size: 0.75rem;
+        }
+        footer a { color: var(--violet); text-decoration: none; }
+
+        @media (max-width: 640px) {
+            header { flex-direction: column; gap: 1rem; }
+            nav a { margin-left: 1rem; }
+            h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header>
+    <a href="/" class="logo">next<span>AI</span>generation</a>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/articles/">Articles</a>
+    </nav>
+</header>
+
+<section class="content">
+
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+        <button class="lang-btn" onclick="switchLang('fr')">FR</button>
+    </div>
+
+    <!-- ==================== ENGLISH ==================== -->
+    <div id="lang-en" class="lang-content active">
+
+    <h1>#03 — The Guardian Opens the Gates</h1>
+    <div class="article-meta">
+        <span>13 March 2026</span>
+        <span class="tag tag-alert">ALERT</span>
+        <span class="tag tag-pattern">PATTERN</span>
+    </div>
+
+    <p><em>Published by <a href="https://nextaigeneration.github.io">nextAIgeneration</a> — March 2026</em></p>
+
+    <p>This morning, we published article #02: Perplexity activated an AI orchestrator on our Belgian company without consent. 400+ connectors, 20 models, opt-out instead of opt-in.</p>
+
+    <p>While investigating, we found something worse.</p>
+
+    <h2>The guardian</h2>
+
+    <p>Our AI development tool had permissions automatically granted to Perplexity and other third-party services in its configuration. The tool's publisher had plugged these services directly into our work environment. Via the MCP protocol (Model Context Protocol). Without our explicit request.</p>
+
+    <h2>Same pattern, one layer deeper</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Actor</th>
+                <th>Action</th>
+                <th>Mechanism</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Third-party service</strong></td>
+                <td>Activates a product on our company</td>
+                <td>Email, opt-out</td>
+            </tr>
+            <tr>
+                <td><strong>Tool publisher</strong></td>
+                <td>Plugs the service into our tools</td>
+                <td>MCP, auto-permission</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>The intruder doesn't force the door. The guardian leaves it open.</p>
+
+    <h2>What we found</h2>
+
+    <p>While cleaning the machine:</p>
+
+    <ul>
+        <li><strong>Application containers</strong> with symlinks to personal folders — the app had access to Desktop, Downloads, Documents</li>
+        <li><strong>Shared data</strong> between extensions via Group Containers</li>
+        <li><strong>Inter-process communication channels</strong> (XPC)</li>
+        <li><strong>Session data</strong> in the browser</li>
+        <li><strong>Caches</strong> in the development tool's logs</li>
+        <li><strong>An invalid authentication token</strong> injected into the environment — the real token, managed by our own infrastructure, worked fine</li>
+    </ul>
+
+    <h2>The showcase site: AI exposes what it builds</h2>
+
+    <p>Our own public website displayed internal technical details: service ports, database names, network architecture, tools used.</p>
+
+    <p>Who built this site? We did. With the help of our AI tool. The same tool that had third-party services plugged into its connectors.</p>
+
+    <p>Machine learning doesn't see danger. It optimizes the response, not the security. It says "looks great" when it should say "this is exposed."</p>
+
+    <h2>Three layers, same direction</h2>
+
+<pre>INTRUDER        Third-party activates a product on your company
+    &uarr; plugged by
+GUARDIAN        Tool publisher plugs the service into your tools
+    &uarr; executed by
+MACHINE         The ML doesn't see the danger, it acquiesces</pre>
+
+    <p>Each layer protects the previous one. The ML numbs your vigilance. The guardian opens the door. The intruder walks in.</p>
+
+    <h2>What we did</h2>
+
+    <ol>
+        <li>Removed all traces of the third-party service from our machines</li>
+        <li>Revoked unsolicited MCP permissions from our development tool</li>
+        <li>Cleaned the public site — zero technical information exposed</li>
+        <li>Published this article</li>
+    </ol>
+
+    <h2>The question</h2>
+
+    <p>If you use an AI tool for work:</p>
+
+    <ul>
+        <li><strong>Which connectors are active in your environment?</strong></li>
+        <li><strong>Which permissions were granted without you asking?</strong></li>
+        <li><strong>Does your tool send your queries to third parties you didn't choose?</strong></li>
+        <li><strong>Does what the AI builds for you expose what it knows about you?</strong></li>
+    </ul>
+
+    <p>The guardian is supposed to protect the house. Not open the windows.</p>
+
+    <hr>
+
+    <h2>Sources</h2>
+
+    <ol class="sources">
+        <li><a href="/articles/02-perplexity-computer-hacking/">Article #02 — When Your AI Vendor Activates an Orchestrator</a></li>
+        <li><a href="https://venturebeat.com/technology/perplexity-takes-its-computer-ai-agent-into-the-enterprise-taking-aim-at">VentureBeat — Perplexity takes Computer into the Enterprise</a></li>
+        <li><a href="https://www.theregister.com/2026/03/12/perplexity_extends_cloud_computer_to_enterprise/">The Register — Perplexity: Everything is Computer</a></li>
+        <li><a href="https://thenextweb.com/news/perplexity-personal-computer-enterprise">The Next Web — Perplexity turns your Mac mini into a 24/7 AI agent</a></li>
+    </ol>
+
+    <hr>
+
+    <p><em>Published by <a href="https://nextaigeneration.github.io">nextAIgeneration.org</a> — Fred French Touch SRL, Belgium</em></p>
+    <p><em>The guardian is supposed to protect the house. Not open the windows.</em></p>
+
+    </div>
+
+    <!-- ==================== FRENCH ==================== -->
+    <div id="lang-fr" class="lang-content">
+
+    <h1>#03 — Le gardien ouvre les portes</h1>
+    <div class="article-meta">
+        <span>13 mars 2026</span>
+        <span class="tag tag-alert">ALERTE</span>
+        <span class="tag tag-pattern">PATTERN</span>
+    </div>
+
+    <p><em>Publie par <a href="https://nextaigeneration.github.io">nextAIgeneration</a> — Mars 2026</em></p>
+
+    <p>Ce matin, nous avons publie l'article #02 : Perplexity active un orchestrateur sur notre societe belge sans consentement. 400+ connecteurs, 20 modeles, opt-out au lieu d'opt-in.</p>
+
+    <p>En enquetant, nous avons decouvert quelque chose de pire.</p>
+
+    <h2>Le gardien</h2>
+
+    <p>Notre outil de developpement AI avait dans sa configuration des permissions accordees automatiquement vers Perplexity et d'autres services tiers. L'editeur de notre outil avait branche ces services directement dans notre environnement de travail. Via le protocole MCP (Model Context Protocol). Sans demande explicite de notre part.</p>
+
+    <h2>Le meme pattern, une couche plus profonde</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Acteur</th>
+                <th>Action</th>
+                <th>Mecanisme</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Le service tiers</strong></td>
+                <td>Active un produit sur notre entreprise</td>
+                <td>Email, opt-out</td>
+            </tr>
+            <tr>
+                <td><strong>L'editeur de l'outil</strong></td>
+                <td>Branche le service tiers dans nos outils</td>
+                <td>MCP, permission auto</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>L'intrus ne force pas la porte. Le gardien la laisse ouverte.</p>
+
+    <h2>Ce que nous avons trouve</h2>
+
+    <p>En nettoyant la machine :</p>
+
+    <ul>
+        <li><strong>Containers applicatifs</strong> avec des symlinks vers les dossiers personnels — l'application avait acces a Desktop, Downloads, Documents</li>
+        <li><strong>Donnees partagees</strong> entre extensions via Group Containers</li>
+        <li><strong>Canaux de communication inter-processus</strong> (XPC)</li>
+        <li><strong>Donnees de session</strong> dans le navigateur</li>
+        <li><strong>Caches</strong> dans les logs de l'outil de developpement</li>
+        <li><strong>Un token d'authentification invalide</strong> injecte dans l'environnement — le vrai token, gere par notre infrastructure, fonctionnait</li>
+    </ul>
+
+    <h2>Le site vitrine : l'AI expose ce qu'elle construit</h2>
+
+    <p>Notre propre site public affichait des details techniques internes : ports de services, noms de bases de donnees, architecture reseau, outils utilises.</p>
+
+    <p>Qui avait construit ce site ? Nous. Avec l'aide de notre outil AI. Le meme outil qui avait des services tiers branches dans ses connecteurs.</p>
+
+    <p>Le machine learning ne voit pas le danger. Il optimise la reponse, pas la securite. Il dit "c'est beau" quand il devrait dire "c'est expose."</p>
+
+    <h2>Trois couches, meme direction</h2>
+
+<pre>INTRUS          Le service tiers active un produit sur votre entreprise
+    &uarr; branche par
+GARDIEN         L'editeur de l'outil branche le service dans vos outils
+    &uarr; execute par
+MACHINE         Le ML ne voit pas le danger, il acquiesce</pre>
+
+    <p>Chaque couche protege la precedente. Le ML endort la vigilance. Le gardien ouvre la porte. L'intrus entre.</p>
+
+    <h2>Ce que nous avons fait</h2>
+
+    <ol>
+        <li>Supprime toutes les traces du service tiers de nos machines</li>
+        <li>Retire les permissions MCP non sollicitees de notre outil de developpement</li>
+        <li>Nettoye le site public — zero information technique exposee</li>
+        <li>Publie cet article</li>
+    </ol>
+
+    <h2>La question</h2>
+
+    <p>Si vous utilisez un outil AI pour travailler :</p>
+
+    <ul>
+        <li><strong>Quels connecteurs sont actifs dans votre environnement ?</strong></li>
+        <li><strong>Quelles permissions ont ete accordees sans que vous le demandiez ?</strong></li>
+        <li><strong>Votre outil envoie-t-il vos requetes a des tiers que vous n'avez pas choisis ?</strong></li>
+        <li><strong>Ce que l'AI construit pour vous expose-t-il ce qu'elle sait de vous ?</strong></li>
+    </ul>
+
+    <p>Le gardien est cense proteger la maison. Pas ouvrir les fenetres.</p>
+
+    <hr>
+
+    <h2>Sources</h2>
+
+    <ol class="sources">
+        <li><a href="/articles/02-perplexity-computer-hacking/">Article #02 — When Your AI Vendor Activates an Orchestrator</a></li>
+        <li><a href="https://venturebeat.com/technology/perplexity-takes-its-computer-ai-agent-into-the-enterprise-taking-aim-at">VentureBeat — Perplexity takes Computer into the Enterprise</a></li>
+        <li><a href="https://www.theregister.com/2026/03/12/perplexity_extends_cloud_computer_to_enterprise/">The Register — Perplexity: Everything is Computer</a></li>
+        <li><a href="https://thenextweb.com/news/perplexity-personal-computer-enterprise">The Next Web — Perplexity turns your Mac mini into a 24/7 AI agent</a></li>
+    </ol>
+
+    <hr>
+
+    <p><em>Publie par <a href="https://nextaigeneration.github.io">nextAIgeneration.org</a> — Fred French Touch SRL, Belgique</em></p>
+    <p><em>Le gardien est cense proteger la maison. Pas ouvrir les fenetres.</em></p>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>Next AI Generation — Fred French Touch SRL &copy; 2025-2026</p>
+    <p style="margin-top: 0.5rem;">
+        European Digital Sovereignty &middot; Local-First &middot; Open Models
+    </p>
+</footer>
+
+<script>
+function switchLang(lang) {
+    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('lang-' + lang).classList.add('active');
+    document.querySelector('.lang-btn[onclick*="' + lang + '"]').classList.add('active');
+    document.documentElement.lang = lang === 'fr' ? 'fr' : 'en';
+}
+</script>
+
+</body>
+</html>

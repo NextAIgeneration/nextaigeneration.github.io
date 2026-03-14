@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#02 — When Your AI Vendor Activates an Orchestrator on Your Company Without Asking — Next AI Generation</title>
+    <meta name="description" content="On March 13, 2026, Perplexity AI activated 'Computer' — a cloud orchestrator with access to 400+ apps — on our Belgian company without consent. GDPR violation documented.">
+    <style>
+        :root {
+            --bg-deep: #221E35;
+            --bg-main: #2D2749;
+            --bg-card: #3D3566;
+            --violet: #8B5CF6;
+            --magenta: #E035A2;
+            --cyan: #00D9FF;
+            --gold: #FBBF24;
+            --green: #10B981;
+            --red: #EF4444;
+            --text: #E5E7EB;
+            --text-secondary: #BD94BB;
+            --text-dim: #C7C9FF;
+            --border: #4A4565;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+            background: var(--bg-deep);
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 1000;
+        }
+        header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.2rem; font-weight: 700; text-decoration: none; color: var(--text); }
+        .logo span { color: var(--violet); }
+        nav a {
+            color: var(--text-dim); text-decoration: none; margin-left: 2rem;
+            font-size: 0.85rem; transition: color 0.2s;
+        }
+        nav a:hover { color: var(--cyan); }
+
+        .content {
+            max-width: 800px; margin: 0 auto; padding: 4rem 2rem;
+        }
+        h1 {
+            font-size: 1.8rem; margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--red), var(--magenta));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .article-meta {
+            font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 2rem;
+            display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;
+        }
+        .tag {
+            padding: 0.2rem 0.5rem; border-radius: 3px;
+            font-size: 0.7rem; font-weight: 600;
+            border: 1px solid var(--border);
+        }
+        .tag-alert { color: var(--red); border-color: var(--red) !important; }
+        .tag-pattern { color: var(--gold); border-color: var(--gold) !important; }
+        .tag-gdpr { color: var(--cyan); border-color: var(--cyan) !important; }
+
+        .lang-switch {
+            display: flex; gap: 0.5rem; margin-bottom: 2rem;
+        }
+        .lang-btn {
+            padding: 0.4rem 1rem; border-radius: 4px;
+            font-size: 0.8rem; font-weight: 600; cursor: pointer;
+            border: 1px solid var(--border); background: var(--bg-card);
+            color: var(--text-dim); font-family: inherit;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            border-color: var(--cyan); color: var(--cyan);
+            background: var(--bg-main);
+        }
+        .lang-btn:hover { border-color: var(--violet); color: var(--violet); }
+
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+
+        h2 {
+            font-size: 1.3rem; color: var(--cyan); margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            font-size: 1rem; color: var(--gold); margin: 1.5rem 0 0.75rem;
+        }
+        p { margin-bottom: 1rem; font-size: 0.9rem; }
+        blockquote {
+            border-left: 3px solid var(--violet);
+            padding: 1rem 1.5rem; margin: 1.5rem 0;
+            background: var(--bg-main); border-radius: 0 6px 6px 0;
+            font-style: italic; color: var(--text-dim);
+        }
+        ul, ol { margin: 1rem 0 1rem 1.5rem; font-size: 0.9rem; }
+        li { margin-bottom: 0.5rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
+        th { text-align: left; padding: 0.75rem; border-bottom: 2px solid var(--violet); color: var(--cyan); }
+        td { padding: 0.75rem; border-bottom: 1px solid var(--border); }
+        a { color: var(--violet); }
+        a:hover { color: var(--cyan); }
+        strong { color: var(--text); }
+        hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+        code {
+            background: var(--bg-main); padding: 0.15rem 0.4rem; border-radius: 3px;
+            font-size: 0.85rem; color: var(--cyan); border: 1px solid var(--border);
+        }
+
+        .sources { margin-top: 2rem; }
+        .sources li { font-size: 0.8rem; color: var(--text-secondary); }
+
+        footer {
+            text-align: center; padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary); font-size: 0.75rem;
+        }
+        footer a { color: var(--violet); text-decoration: none; }
+
+        @media (max-width: 640px) {
+            header { flex-direction: column; gap: 1rem; }
+            nav a { margin-left: 1rem; }
+            h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header>
+    <a href="/" class="logo">next<span>AI</span>generation</a>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/articles/">Articles</a>
+    </nav>
+</header>
+
+<section class="content">
+
+    <div class="lang-switch">
+        <button class="lang-btn active" onclick="switchLang('fr')">FR</button>
+        <button class="lang-btn" onclick="switchLang('en')">EN</button>
+    </div>
+
+    <!-- ==================== FRENCH ==================== -->
+    <div id="lang-fr" class="lang-content active">
+
+    <h1>#02 — Quand votre fournisseur AI active un orchestrateur sur votre entreprise sans demander</h1>
+    <div class="article-meta">
+        <span>13 Mars 2026</span>
+        <span class="tag tag-alert">ALERT</span>
+        <span class="tag tag-gdpr">GDPR</span>
+        <span class="tag tag-pattern">PATTERN</span>
+    </div>
+
+    <p><em>Publi&eacute; par <a href="https://nextaigeneration.github.io">nextAIgeneration</a> — Mars 2026</em></p>
+
+    <p>Le 13 mars 2026, notre soci&eacute;t&eacute; (Fred French Touch SRL, Belgique) a re&ccedil;u un email de Perplexity AI (San Francisco, CA) nous informant que <strong>&laquo; Computer &raquo;</strong>, leur nouvel orchestrateur AI, &eacute;tait d&eacute;sormais <strong>&laquo; live for all users &raquo;</strong> dans notre organisation.</p>
+
+    <p>Personne n'avait demand&eacute; cette activation.</p>
+
+    <h2>Ce que fait &laquo; Computer &raquo;</h2>
+
+    <p>Perplexity Computer est un orchestrateur cloud qui :</p>
+
+    <ul>
+        <li><strong>Route les requ&ecirc;tes vers 20 mod&egrave;les frontier</strong> — dont aucun n'appartient &agrave; Perplexity</li>
+        <li><strong>Se connecte &agrave; 400+ applications</strong> — Gmail, Outlook, GitHub, Slack, Notion, Snowflake, Databricks, Salesforce, HubSpot</li>
+        <li><strong>Ex&eacute;cute des t&acirc;ches en arri&egrave;re-plan</strong> sans pr&eacute;sence de l'utilisateur, via des sub-agents autonomes</li>
+        <li><strong>Propose une int&eacute;gration Slack</strong> o&ugrave; un simple <code>@Computer</code> dans un canal donne &agrave; Perplexity acc&egrave;s aux conversations</li>
+    </ul>
+
+    <p>En parall&egrave;le, Perplexity a lanc&eacute; <strong>&laquo; Personal Computer &raquo;</strong> : un logiciel qui tourne 24/7 sur un Mac mini d&eacute;di&eacute;, donnant &agrave; leur plateforme cloud un <strong>acc&egrave;s permanent</strong> &agrave; tous les fichiers, applications et sessions de la machine.</p>
+
+    <p>Le CEO Aravind Srinivas le d&eacute;crit comme <em>&laquo; a digital proxy for you, working constantly on your behalf. &raquo;</em></p>
+
+    <h2>Le m&eacute;canisme : opt-out, pas opt-in</h2>
+
+    <p>L'email nous invite &agrave; &laquo; g&eacute;rer les permissions &raquo; et &laquo; d&eacute;finir les pr&eacute;f&eacute;rences pour les nouveaux connecteurs. &raquo; La formulation est r&eacute;v&eacute;latrice :</p>
+
+    <blockquote>
+        <p><em>&laquo; Set your default preference for new connectors as new connectors will be available according to your preferences. &raquo;</em></p>
+    </blockquote>
+
+    <p>Traduction : les nouveaux connecteurs <strong>s'activent par d&eacute;faut</strong>. C'est &agrave; l'entreprise de les d&eacute;sactiver un par un. Parmi les 400+.</p>
+
+    <p>Ce n'est pas un opt-in. C'est un opt-out massif. Sur une SRL belge. En Europe.</p>
+
+    <h2>Ce que &ccedil;a viole</h2>
+
+    <h3>RGPD (R&egrave;glement G&eacute;n&eacute;ral sur la Protection des Donn&eacute;es)</h3>
+
+    <table>
+        <thead>
+            <tr><th>Article</th><th>Violation</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Art. 6</td><td>Aucune base l&eacute;gale pour ce traitement — pas de consentement, pas de contrat pour CE service</td></tr>
+            <tr><td>Art. 7</td><td>Consentement ni &eacute;clair&eacute;, ni granulaire, ni opt-in</td></tr>
+            <tr><td>Art. 25</td><td>Privacy by design = opt-in par d&eacute;faut. Pas opt-out</td></tr>
+            <tr><td>Art. 44+</td><td>Transfert de donn&eacute;es UE &rarr; USA sans garanties ad&eacute;quates</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Le mod&egrave;le &eacute;conomique derri&egrave;re</h3>
+
+    <p>Perplexity ne poss&egrave;de aucun mod&egrave;le AI. Leur plateforme route vers des mod&egrave;les tiers (GPT, Claude, Gemini, etc.). En janvier 2025, 90% de leurs requ&ecirc;tes allaient vers seulement 2 mod&egrave;les.</p>
+
+    <p>Leur revenue 2025 : <strong>$148 millions</strong>. Leur objectif 2026 : <strong>$656 millions</strong>. Pour justifier cette croissance de 230%, ils ont besoin de donn&eacute;es d'entreprise. D'o&ugrave; l'activation automatique sur les comptes existants.</p>
+
+    <p>Les cr&eacute;dits offerts (40 000 pour Enterprise Max) sont le premier fix gratuit. L'usage-based billing qui suit est le robinet.</p>
+
+    <h2>Un pattern r&eacute;current</h2>
+
+    <p>Ce n'est pas un cas isol&eacute;. Nous avons document&eacute; le m&ecirc;me m&eacute;canisme chez :</p>
+
+    <ul>
+        <li><strong>Notion</strong> — Templates non supprimables, export bloqu&eacute;, cookies marketing sur un outil de notes</li>
+        <li><strong>Obsidian Publish</strong> — Cloud Cloudflare/SF &agrave; $96/an, activ&eacute; par d&eacute;faut</li>
+        <li><strong>Applications tierces</strong> — Install&eacute;es silencieusement par un LLM concurrent comme proxy r&eacute;seau</li>
+    </ul>
+
+    <p>Le pattern est toujours le m&ecirc;me : <strong>activation par d&eacute;faut &rarr; extraction par confort &rarr; lock-in par inertie &rarr; facturation par usage.</strong></p>
+
+    <h2>Ce que nous avons fait</h2>
+
+    <ol>
+        <li><strong>D&eacute;ratisation compl&egrave;te</strong> de notre poste de travail : containers, receipts, caches, local storage, int&eacute;grations MCP — tout supprim&eacute;</li>
+        <li><strong>Arr&ecirc;t de Perplexity</strong> dans l'organisation</li>
+        <li><strong>Audit du PC</strong> de la dirigeante pour supprimer toute trace</li>
+        <li><strong>Documentation publique</strong> de l'incident (cet article)</li>
+    </ol>
+
+    <p>Nous n'avions aucune d&eacute;pendance &agrave; Perplexity dans notre pipeline de production. Nos outils sont souverains, locaux, et europ&eacute;ens.</p>
+
+    <h2>La question pour votre entreprise</h2>
+
+    <p>Si vous avez un compte Perplexity Enterprise, v&eacute;rifiez maintenant :</p>
+
+    <ul>
+        <li><code>perplexity.ai/account/org/permissions</code> — qui a acc&egrave;s &agrave; Computer ?</li>
+        <li>Quels connecteurs sont activ&eacute;s par d&eacute;faut ?</li>
+        <li>L'int&eacute;gration Slack est-elle active ?</li>
+        <li>Vos donn&eacute;es transitent-elles par San Francisco sans votre consentement explicite ?</li>
+    </ul>
+
+    <hr>
+
+    <h2>Sources</h2>
+
+    <ol class="sources">
+        <li><a href="https://venturebeat.com/technology/perplexity-takes-its-computer-ai-agent-into-the-enterprise-taking-aim-at">VentureBeat — Perplexity takes Computer into the Enterprise</a></li>
+        <li><a href="https://www.theregister.com/2026/03/12/perplexity_extends_cloud_computer_to_enterprise/">The Register — Perplexity: Everything is Computer</a></li>
+        <li><a href="https://thenextweb.com/news/perplexity-personal-computer-enterprise">The Next Web — Perplexity turns your Mac mini into a 24/7 AI agent</a></li>
+        <li><a href="https://www.axios.com/2026/03/11/perplexity-personal-computer-mac">Axios — Perplexity rolls out enterprise AI agent tools</a></li>
+        <li><a href="https://www.digitimes.com/news/a20260303PD208/ai-agent-startup-development.html">DIGITIMES — Perplexity's new agent bundles 19 models</a></li>
+        <li><a href="https://theaiinsider.tech/2026/02/28/perplexity-unveils-enterprise-focused-ai-agent-system-powered-by-multi-model-architecture/">The AI Insider — Perplexity Unveils Enterprise AI Agent System</a></li>
+        <li><a href="https://www.ciodive.com/news/perplexity-enterprise-ai-browser-tools/814609/">CIO Dive — Perplexity aims for the enterprise</a></li>
+        <li><a href="https://nationaltoday.com/us/ca/san-francisco/news/2026/03/12/perplexity-unveils-personal-computer-expands-enterprise-tools/">San Francisco Today — Perplexity Unveils Personal Computer</a></li>
+        <li><a href="https://events.zoom.us/ev/AkFKTsRpTYD2eQ0Vw5DhrMeW9rtNtGj-hOtP0W7YCgHArB4pW4Uy~Am6hCmean9u5eOueRm6X4YtUXopF98iyKlbgztQNtLVbPJD6rV00kUQTG_fWGxIxh3fXB7h8L-UHqkpx3_xm_TwmNw">Perplexity — Workshop invitation (Zoom)</a></li>
+        <li><a href="https://www.perplexity.ai/products/computer/slack">Perplexity — Slack integration page</a></li>
+        <li><a href="https://www.perplexity.ai/account/org/permissions">Perplexity — Organization permissions</a></li>
+    </ol>
+
+    <hr>
+
+    <p><em>Publi&eacute; par <a href="https://nextaigeneration.github.io">nextAIgeneration</a> — Fred French Touch SRL</em></p>
+    <p><em>Outils souverains. Donn&eacute;es europ&eacute;ennes. Z&eacute;ro San Francisco dans notre pipeline.</em></p>
+
+    </div>
+
+    <!-- ==================== ENGLISH ==================== -->
+    <div id="lang-en" class="lang-content">
+
+    <h1>#02 — When Your AI Vendor Activates an Orchestrator on Your Company Without Asking</h1>
+    <div class="article-meta">
+        <span>13 March 2026</span>
+        <span class="tag tag-alert">ALERT</span>
+        <span class="tag tag-gdpr">GDPR</span>
+        <span class="tag tag-pattern">PATTERN</span>
+    </div>
+
+    <p><em>Published by <a href="https://nextaigeneration.github.io">nextAIgeneration</a> — March 2026</em></p>
+
+    <p>On March 13, 2026, our company (Fred French Touch SRL, Belgium) received an email from Perplexity AI (San Francisco, CA) informing us that <strong>"Computer"</strong>, their new AI orchestrator, was now <strong>"live for all users"</strong> in our organization.</p>
+
+    <p>Nobody asked for this activation.</p>
+
+    <h2>What "Computer" does</h2>
+
+    <p>Perplexity Computer is a cloud orchestrator that:</p>
+
+    <ul>
+        <li><strong>Routes queries across 20 frontier models</strong> — none of which Perplexity owns</li>
+        <li><strong>Connects to 400+ applications</strong> — Gmail, Outlook, GitHub, Slack, Notion, Snowflake, Databricks, Salesforce, HubSpot</li>
+        <li><strong>Executes background tasks</strong> without the user being present, via autonomous sub-agents</li>
+        <li><strong>Offers Slack integration</strong> where a simple <code>@Computer</code> in a channel gives Perplexity access to conversations</li>
+    </ul>
+
+    <p>In parallel, Perplexity launched <strong>"Personal Computer"</strong>: software that runs 24/7 on a dedicated Mac mini, giving their cloud platform <strong>persistent access</strong> to every file, application, and session on the machine.</p>
+
+    <p>CEO Aravind Srinivas describes it as <em>"a digital proxy for you, working constantly on your behalf."</em></p>
+
+    <h2>The mechanism: opt-out, not opt-in</h2>
+
+    <p>The email invites us to "manage permissions" and "set default preferences for new connectors." The wording is telling:</p>
+
+    <blockquote>
+        <p><em>"Set your default preference for new connectors as new connectors will be available according to your preferences."</em></p>
+    </blockquote>
+
+    <p>Translation: new connectors <strong>activate by default</strong>. It's up to the company to disable them one by one. Out of 400+.</p>
+
+    <p>This is not opt-in. This is mass opt-out. On a Belgian company. In Europe.</p>
+
+    <h2>What this violates</h2>
+
+    <h3>GDPR (General Data Protection Regulation)</h3>
+
+    <table>
+        <thead>
+            <tr><th>Article</th><th>Violation</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Art. 6</td><td>No legal basis for processing — no consent, no contract for THIS service</td></tr>
+            <tr><td>Art. 7</td><td>Consent is neither informed, nor granular, nor opt-in</td></tr>
+            <tr><td>Art. 25</td><td>Privacy by design = opt-in by default. Not opt-out</td></tr>
+            <tr><td>Art. 44+</td><td>EU &rarr; US data transfer without adequate safeguards</td></tr>
+        </tbody>
+    </table>
+
+    <h3>The business model behind it</h3>
+
+    <p>Perplexity owns zero AI models. Their platform routes to third-party models (GPT, Claude, Gemini, etc.). In January 2025, 90% of their queries went to just 2 models.</p>
+
+    <p>Their 2025 revenue: <strong>$148 million</strong>. Their 2026 target: <strong>$656 million</strong>. To justify 230% growth, they need enterprise data. Hence the automatic activation on existing accounts.</p>
+
+    <p>The free bonus credits (40,000 for Enterprise Max) are the first free hit. The usage-based billing that follows is the tap.</p>
+
+    <h2>A recurring pattern</h2>
+
+    <p>This is not an isolated case. We have documented the same mechanism at:</p>
+
+    <ul>
+        <li><strong>Notion</strong> — Non-deletable templates, blocked exports, marketing cookies on a notes tool</li>
+        <li><strong>Obsidian Publish</strong> — Cloudflare/SF cloud at $96/year, activated by default</li>
+        <li><strong>Third-party applications</strong> — Silently installed by a competing LLM as a network proxy</li>
+    </ul>
+
+    <p>The pattern is always the same: <strong>default activation &rarr; extraction through convenience &rarr; lock-in through inertia &rarr; usage-based billing.</strong></p>
+
+    <h2>What we did</h2>
+
+    <ol>
+        <li><strong>Full deratization</strong> of our workstation: containers, receipts, caches, local storage, MCP integrations — everything removed</li>
+        <li><strong>Shut down Perplexity</strong> across the organization</li>
+        <li><strong>Audited the CEO's PC</strong> to remove all traces</li>
+        <li><strong>Public documentation</strong> of the incident (this article)</li>
+    </ol>
+
+    <p>We had zero dependency on Perplexity in our production pipeline. Our tools are sovereign, local, and European.</p>
+
+    <h2>The question for your company</h2>
+
+    <p>If you have a Perplexity Enterprise account, check now:</p>
+
+    <ul>
+        <li><code>perplexity.ai/account/org/permissions</code> — who has access to Computer?</li>
+        <li>Which connectors are active by default?</li>
+        <li>Is the Slack integration enabled?</li>
+        <li>Is your data transiting through San Francisco without your explicit consent?</li>
+    </ul>
+
+    <hr>
+
+    <h2>Sources</h2>
+
+    <ol class="sources">
+        <li><a href="https://venturebeat.com/technology/perplexity-takes-its-computer-ai-agent-into-the-enterprise-taking-aim-at">VentureBeat — Perplexity takes Computer into the Enterprise</a></li>
+        <li><a href="https://www.theregister.com/2026/03/12/perplexity_extends_cloud_computer_to_enterprise/">The Register — Perplexity: Everything is Computer</a></li>
+        <li><a href="https://thenextweb.com/news/perplexity-personal-computer-enterprise">The Next Web — Perplexity turns your Mac mini into a 24/7 AI agent</a></li>
+        <li><a href="https://www.axios.com/2026/03/11/perplexity-personal-computer-mac">Axios — Perplexity rolls out enterprise AI agent tools</a></li>
+        <li><a href="https://www.digitimes.com/news/a20260303PD208/ai-agent-startup-development.html">DIGITIMES — Perplexity's new agent bundles 19 models</a></li>
+        <li><a href="https://theaiinsider.tech/2026/02/28/perplexity-unveils-enterprise-focused-ai-agent-system-powered-by-multi-model-architecture/">The AI Insider — Perplexity Unveils Enterprise AI Agent System</a></li>
+        <li><a href="https://www.ciodive.com/news/perplexity-enterprise-ai-browser-tools/814609/">CIO Dive — Perplexity aims for the enterprise</a></li>
+        <li><a href="https://nationaltoday.com/us/ca/san-francisco/news/2026/03/12/perplexity-unveils-personal-computer-expands-enterprise-tools/">San Francisco Today — Perplexity Unveils Personal Computer</a></li>
+        <li><a href="https://events.zoom.us/ev/AkFKTsRpTYD2eQ0Vw5DhrMeW9rtNtGj-hOtP0W7YCgHArB4pW4Uy~Am6hCmean9u5eOueRm6X4YtUXopF98iyKlbgztQNtLVbPJD6rV00kUQTG_fWGxIxh3fXB7h8L-UHqkpx3_xm_TwmNw">Perplexity — Workshop invitation (Zoom)</a></li>
+        <li><a href="https://www.perplexity.ai/products/computer/slack">Perplexity — Slack integration page</a></li>
+        <li><a href="https://www.perplexity.ai/account/org/permissions">Perplexity — Organization permissions</a></li>
+    </ol>
+
+    <hr>
+
+    <p><em>Published by <a href="https://nextaigeneration.github.io">nextAIgeneration</a> — Fred French Touch SRL</em></p>
+    <p><em>Sovereign tools. European data. Zero San Francisco in our pipeline.</em></p>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>Next AI Generation — Fred French Touch SRL &copy; 2025-2026</p>
+    <p style="margin-top: 0.5rem;">
+        European Digital Sovereignty &middot; Local-First &middot; Open Models
+    </p>
+</footer>
+
+<script>
+function switchLang(lang) {
+    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('lang-' + lang).classList.add('active');
+    document.querySelector('.lang-btn[onclick*="' + lang + '"]').classList.add('active');
+    document.documentElement.lang = lang === 'fr' ? 'fr' : 'en';
+}
+</script>
+
+</body>
+</html>
